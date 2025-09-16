@@ -119,22 +119,7 @@
     </main>
 
 
-    <script>
-        // Animation for fact cards
-        document.addEventListener('DOMContentLoaded', () => {
-            const facts = document.querySelectorAll('.bg-pink-50');
-            facts.forEach((fact, index) => {
-                fact.style.opacity = '0';
-                fact.style.transform = 'scale(0.9)';
-                fact.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-                
-                setTimeout(() => {
-                    fact.style.opacity = '1';
-                    fact.style.transform = 'scale(1)';
-                }, 100 * index);
-            });
-        });
-    </script>
+   
 </body>
 </html>
     

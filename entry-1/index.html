@@ -1,21 +1,309 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Page Title - Entry 1</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div>
-      <h2>Header</h2>
-      <p>This is entry 1.</p>
-    </div>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>狗狗世界 - 探索犬类的奇妙世界</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome-awesome.min.css" rel="stylesheet">
+    <script>
+        // Tailwind配置
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4ade80',
+                        secondary: '#fbbf24',
+                        dark: '#1e293b',
+                        light: '#f8fafc'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .transition-custom {
+                transition: all 0.3s ease;
+            }
+        }
+    </style>
+</head>
+<body class="bg-light text-dark font-sans">
+    <!-- 导航栏 -->
+    <header class="fixed w-full bg-white-white shadow-md:shadow-md z-50 transition-all duration-300" id="navbar">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="#" class="flex items-center space-x-2">
+                <i class="fa fa-paw text-primary text-2xl"></i>
+                <span class="text-xl font-bold">狗狗世界</span>
+            </a>
+            
+            <!-- 桌面导航 -->
+            <nav class="hidden md:flex space-x-8">
+                <a href="#home" class="font-medium hover:text-primary transition-custom">首页</a>
+                <a href="#breeds" class="font-medium hover:text-primary-primary transition-custom">犬种</a>
+                <a href="#gallery" class="font-medium hover:text-primary transition-custom">图片</a>
+                <a href="#facts" class="font-medium-medium hover:text-primary transition-custom">知识</a>
+                <a href="#contact" class="font-medium hover:text-primary transition-custom">联系我们</a>
+            </nav>
+            
+            <!-- 移动端菜单按钮 -->
+            <button class="md:hidden text-dark text-xl" id="menuBtn">
+                <i class="fa fa-bars"></i>
+            </button>
+        </div>
+        
+        <!-- 移动端导航菜单 -->
+        <div class="md:hidden bg-white-800 text-white hidden" id="mobileMenu">
+            <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
+                <a href="#home" class="py-2 hover:text-primary transition-custom">首页</a>
+                <a href="#breeds" class="py-2 hover hover:text-primary transition-custom">犬种</a>
+                <a href="#gallery" class="py-2 hover:text-primary transition-custom">图片</a>
+                <a href="#facts" class="py-2 hover:text-primary transition-custom">知识</a>
+                <a href="#contact" class="py-2 hover:text-primary transition-custom">联系我们</a>
+            </div>
+        </div>
+    </header>
 
-    <h2>Header</h2>
-    <p>This is entry 1.</p>
+    <!-- 英雄区域 -->
+    <section id="home" class="relative h-screen-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://picsum.photos/id/169/1920/1080" alt="狗狗英雄图" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-dark/50"></div>
+        </div>
+        <div class="container mx-auto px-4 z-10 text-center text-white">
+            <h1 class="text-[clamp(2.5rem,8vw,5rem)] font-bold mb-6 leading-tight text-shadow">
+                探索狗狗的奇妙世界
+            </h1>
+            <p class="text-[clamp(1rem,3vw,1.5rem)] mb-8 max-w-3xl mx-auto">
+                从忠诚的伙伴到工作能手，狗狗是人类最好的朋友。了解更多关于这些可爱生物的知识。
+            </p>
+            <a href="#breeds" class="inline-block bg-primary hover:bg-primary/90 text-dark font-bold py-3 px-8 rounded-full-lg transition-custom transform hover:scale-105">
+                开始探索 <i class="fa fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <a href="#breeds" class="text-white text-3xl">
+                <i class="fa fa-chevron-down"></i>
+            </a>
+        </div>
+    </section>
 
-    <h2>Header</h2>
-    <p>This is entry 1.</p>
-  </body>
-</html>
+    <!-- 犬种介绍 -->
+    <section id="breeds" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.8rem,5vw,3rem)] font-bold mb-4">热门犬种</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto text-lg">
+                    世界上有数百种犬种，每种都有其独特的性格和特点。以下是一些最受欢迎的犬种。
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- 金毛寻回犬 -->
+                <div class="bg-light rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-custom group">
+                    <div class="h-60 overflow-hidden">
+                        <img src="https://picsum.photos/id/237/600/400" alt="金毛寻回犬" class="w-full h-full object-cover transition-custom group-hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">金毛寻回犬</h3>
+                        <p class="text-gray-600 mb-4">
+                            金毛寻回犬友好、可靠且信任度高，是优秀的家庭宠物。它们聪明且容易训练，常被用作为导盲犬、搜救犬和治疗犬。
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <span class="bg-primary/20 text-dark px-3 py-1 rounded-full text-sm">友善</span>
+                            <span class="bg-primary/20 text-dark px-3 py-1 rounded-full text-sm">聪明</span>
+                            <span class="bg-primary/20 text-dark px-3 py-1 rounded-full text-sm">活跃</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 德国牧羊犬 -->
+                <div class="bg-light rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-custom group">
+                    <div class="h-60 overflow-hidden">
+                        <img src="https://picsum.photos/id/1025/600/400" alt="德国牧羊犬" class="w-full h-full object-cover transition-custom group-hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">德国牧羊犬</h3>
+                        <p class="text-gray-600 mb-4">
+                            德国牧羊犬聪明、勇敢且忠诚，常被用于警犬、军犬和护卫工作。它们需要大量的运动和智力刺激。
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <span class="bg-primary/20 text-dark px-3 py-1 rounded-full text-sm">忠诚</span>
+                            <span class="bg-primary/20 text-dark px-3 py-1 rounded-full text-sm">勇敢</span>
+                            <span class="bg-primary/20 text-dark px-3 py-1 rounded-full text-sm">警惕</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 贵宾犬 -->
+                <div class="bg-light rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-custom group">
+                    <div class="h-60 overflow-hidden">
+                        <img src="https://picsum.photos/id/1062/600/400" alt="贵宾犬" class="w-full h-full object-cover transition-custom group-hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">贵宾犬</h3>
+                        <p class="text-gray-600 mb-4">
+                            贵宾犬聪明、活泼且不掉毛，是过敏体质主人的理想选择。它们有多种体型，从玩具型到标准型不等。
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <span class="bg-primary/20 text-dark px-3 py-1 rounded-full text-sm">聪明</span>
+                            <span class="bg-primary/20 text-dark px-3 py-1 rounded-full text-sm">活泼</span>
+                            <span class="bg-primary/20 text-dark px-3 py-1 rounded-full text-sm">低脱毛</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 拉布拉多寻回犬 -->
+                <div class="bg-light rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-custom group">
+                    <div class="h-60 overflow-hidden">
+                        <img src="https://picsum.photos/id/1025/600/400" alt="拉布拉多寻回犬" class="w-full h-full object-cover transition-custom group-hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">拉布拉多寻回犬</h3>
+                        <p class="text-gray-600 mb-4">
+                            拉布拉多友善、开朗且温和，是优秀的家庭宠物和工作犬。它们对孩子特别友好，常被训练为导盲犬。
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <span class="bg-primary/20 text-dark px-3 py-1 rounded-full text-sm">友善</span>
+                            <span class="bg-primary/20 text-dark px-3 py-1 rounded-full text-sm">温顺</span>
+                            <span class="bg-primary/20 text-dark px-3 py-1 rounded-full text-sm">易训练</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 边境牧羊犬 -->
+                <div class="bg-light rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-custom group">
+                    <div class="h-60 overflow-hidden">
+                        <img src="https://picsum.photos/id/1074/600/400" alt="边境牧羊犬" class="w-full h-full object-cover transition-custom group-hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">边境牧羊犬</h3>
+                        <p class="text-gray-600 mb-4">
+                            边境牧羊犬被认为是最聪明的犬种之一，它们精力充沛，需要大量的活动和智力挑战。
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <span class="bg-primary/20 text-dark px-3 py-1 rounded-full text-sm">极聪明</span>
+                            <span class="bg-primary/20 text-dark px-3 py-1 rounded-full text-sm">活跃</span>
+                            <span class="bg-primary/20 text-dark px-3 py-1 rounded-full text-sm">敏捷</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 萨摩耶犬 -->
+                <div class="bg-light rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-custom group">
+                    <div class="h-60 overflow-hidden">
+                        <img src="https://picsum.photos/id/237/600/400" alt="萨摩耶犬" class="w-full h-full object-cover transition-custom group-hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">萨摩耶犬</h3>
+                        <p class="text-gray-600 mb-4">
+                            萨摩耶犬以其标志性的微笑和蓬松的白色毛发而闻名，它们友好、活泼，喜欢与人互动。
+                        </p>
+                        
+                        <div class="flex justify-between items-center">
+                            <span class="bg-primary/20 text-dark px-3 py-1 rounded-full text-sm">友好</span>
+                            <span class="bg-primary/20 text-dark px-3 py-1 rounded-full text-sm">活泼</span>
+                            <span class="bg-primary/20 text-dark px-3 py-1 rounded-full text-sm">美丽</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 图片展示 -->
+    <section id="gallery" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.8rem,5vw,3rem)] font-bold mb-4">狗狗画廊</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto text-lg">
+                    欣赏这些可爱的狗狗照片，每一张都展现了狗狗的独特魅力和个性。
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <div class="overflow-hidden rounded-lg group cursor-pointer">
+                    <img src="https://picsum.photos/id/1025/400/400" alt="可爱的小狗" class="w-full h-64 object-cover transition-custom group-hover:scale-110">
+                </div>
+                <div class="overflow-hidden rounded-lg group cursor-pointer">
+                    <img src="https://picsum.photos/id/1062/400/400" alt="奔跑的狗" class="w-full h-64 object-cover transition-custom group-hover:scale-110">
+                </div>
+                <div class="overflow-hidden rounded-lg group cursor-pointer">
+                    <img src="https://picsum.photos/id/1074/400/400" alt="狗的特写" class="w-full h-64 object-cover transition-custom group-hover:scale-110">
+                </div>
+                <div class="overflow-hidden rounded-lg group cursor-pointer">
+                    <img src="https://picsum.photos/id/169/400/400" alt="玩耍的狗" class="w-full h-64 object-cover transition-custom group-hover:scale-110">
+                </div>
+                <div class="overflow-hidden rounded-lg group cursor-pointer">
+                    <img src="https://picsum.photos/id/237/400/400" alt="休息的狗" class="w-full h-64 object-cover transition-custom group-hover:scale-110">
+                </div>
+                <div class="overflow-hidden rounded-lg group cursor-pointer">
+                    <img src="https://picsum.photos/id/1025/400/400" alt="训练中的狗" class="w-full h-64 object-cover transition-custom group-hover:scale-110">
+                </div>
+                <div class="overflow-hidden rounded-lg group cursor-pointer">
+                    <img src="https://picsum.photos/id/1062/400/400" alt="水中的狗" class="w-full h-64 object-cover transition-custom group-hover:scale-110">
+                </div>
+                <div class="overflow-hidden rounded-lg group cursor-pointer">
+                    <img src="https://picsum.photos/id/1074/400/400" alt="雪中的狗" class="w-full h-64 object-cover transition-custom group-hover:scale-110">
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <button class="bg-dark hover:bg-dark/80 text-white font-bold py-3 px-8 rounded-full transition-custom transform hover:scale-105">
+                    加载更多图片 <i class="fa fa-refresh ml-2"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 狗狗知识 -->
+    <section id="facts" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.8rem,5vw,3rem)] font-bold mb-4">狗狗小知识</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto text-lg">
+                    你知道吗？狗狗有很多令人惊奇的能力和特点。了解这些有趣的事实，更好地理解你的 furry friend。
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div class="bg-light p-8 rounded-xl shadow-md hover:shadow-lg transition-custom flex">
+                    <div class="mr-6 text-primary text-4xl">
+                        <i class="fa fa-paw"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-3">狗狗的嗅觉</h3>
+                        <p class="text-gray-600">
+                            狗狗的嗅觉比人类灵敏10,000到100,000倍。它们可以闻到稀释到万亿分之一的气味，这就是为什么它们被用于搜救、检测毒品和爆炸物。
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="bg-light p-8 rounded-xl shadow-md hover:shadow-lg transition-custom flex">
+                    <div class="mr-6 text-primary text-4xl">
+                        <i class="fa fa-clock-o"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-3">狗狗的年龄</h3>
+                        <p class="text-gray-600">
+                            传统的"一岁等于七岁"的说法并不准确。小型犬的寿命通常比大型犬长，不同犬种的老化速度也不同，一般来说，狗狗在第一年相当于人类的15年左右。
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="bg-light p-8 rounded-xl shadow-md hover:shadow-lg transition-custom flex">
+                    <div class="mr-6 text-primary text-4xl">
+                        <i class="fa fa-ears"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-3">狗狗的听力</h3>

@@ -1,1 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello Kitty's Fun Facts</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        kittyPink: '#FFB6C1',
+                        kittyRed: '#FF69B4',
+                        kittyYellow: '#FFFACD'
+                    },
+                    fontFamily: {
+                        cute: ['"Comic Sans MS"', 'cursive']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-pink-50">
+    <!-- Header -->
+    <header class="bg-white shadow-md py-4">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-3xl md:text-4xl font-cute font-bold text-kittyRed">Hello Kitty's Fun Facts</h1>
+            <p class="text-gray-600">Interesting things you might not know</p>
+        </div>
+    </header>
 
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Back to main page link -->
+        <div class="text-center mb-8">
+            <a href="index.html" class="inline-flex items-center text-kittyRed hover:underline">
+                <i class="fa fa-arrow-left mr-2"></i> Back to Hello Kitty's World
+            </a>
+        </div>
+
+        <!-- Fun Facts Section -->
+        <section class="max-w-3xl mx-auto">
+            <div class="bg-white rounded-xl shadow-md p-6 md:p-8 mb-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-pink-50 p-5 rounded-lg flex items-start">
+                        <i class="fa fa-user text-kittyRed text-2xl mt-1 mr-4"></i>
+                        <div>
+                            <h3 class="font-cute text-lg text-kittyRed mb-1">Full Name</h3>
+                            <p>Hello Kitty's full name is Kitty White.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-pink-50 p-5 rounded-lg flex items-start">
+                        <i class="fa fa-map-marker text-kittyRed text-2xl mt-1 mr-4"></i>
+                        <div>
+                            <h3 class="font-cute text-lg text-kittyRed mb-1">Home</h3>
+                            <p>She lives in London with her parents and sister Mimi.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-pink-50 p-5 rounded-lg flex items-start">
+                        <i class="fa fa-birthday-cake text-kittyRed text-2xl mt-1 mr-4"></i>
+                        <div>
+                            <h3 class="font-cute text-lg text-kittyRed mb-1">Birthday</h3>
+                            <p>Her birthday is November 1st, which makes her a Scorpio.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-pink-50 p-5 rounded-lg flex items-start">
+                        <i class="fa fa-cutlery text-kittyRed text-2xl mt-1 mr-4"></i>
+                        <div>
+                            <h3 class="font-cute text-lg text-kittyRed mb-1">Favorite Food</h3>
+                            <p>She loves eating apple pie made by her mom.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-pink-50 p-5 rounded-lg flex items-start">
+                        <i class="fa fa-graduation-cap text-kittyRed text-2xl mt-1 mr-4"></i>
+                        <div>
+                            <h3 class="font-cute text-lg text-kittyRed mb-1">School</h3>
+                            <p>She attends London's Royal Ballet School.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-pink-50 p-5 rounded-lg flex items-start">
+                        <i class="fa fa-paint-brush text-kittyRed text-2xl mt-1 mr-4"></i>
+                        <div>
+                            <h3 class="font-cute text-lg text-kittyRed mb-1">Hobbies</h3>
+                            <p>She enjoys baking, sewing, and collecting cute things.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-pink-50 p-5 rounded-lg flex items-start">
+                        <i class="fa fa-paw text-kittyRed text-2xl mt-1 mr-4"></i>
+                        <div>
+                            <h3 class="font-cute text-lg text-kittyRed mb-1">Pet</h3>
+                            <p>She has a pet cat named Charmmy Kitty.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-pink-50 p-5 rounded-lg flex items-start">
+                        <i class="fa fa-arrows-v text-kittyRed text-2xl mt-1 mr-4"></i>
+                        <div>
+                            <h3 class="font-cute text-lg text-kittyRed mb-1">Height</h3>
+                            <p>She is five apples tall and three apples wide.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kitty Image -->
+            <div class="text-center">
+                <img src="https://picsum.photos/id/237/400/400" alt="Hello Kitty illustration" class="w-64 h-64 mx-auto rounded-full border-4 border-kittyPink">
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-kittyRed text-white py-6 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2023 Hello Kitty's World</p>
+            <p class="mt-2">Created with <i class="fa fa-heart"></i> for Hello Kitty lovers</p>
+        </div>
+    </footer>
+
+    <script>
+        // Animation for fact cards
+        document.addEventListener('DOMContentLoaded', () => {
+            const facts = document.querySelectorAll('.bg-pink-50');
+            facts.forEach((fact, index) => {
+                fact.style.opacity = '0';
+                fact.style.transform = 'scale(0.9)';
+                fact.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                
+                setTimeout(() => {
+                    fact.style.opacity = '1';
+                    fact.style.transform = 'scale(1)';
+                }, 100 * index);
+            });
+        });
+    </script>
+</body>
+</html>
+    

@@ -1,15 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Page Title - Entry 2</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello Kitty's Stylish Outfits</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        kittyPink: '#FF9EB1',
+                        kittyRed: '#E60033',
+                        kittyYellow: '#FFD166',
+                        kittyBlue: '#4CC9F0',
+                        kittyGreen: '#4895EF',
+                        kittyBlack: '#2B2D42',
+                    },
+                    fontFamily: {
+                        cute: ['"Comic Sans MS"', '"Bubblegum Sans"', 'cursive'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-shadow {
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            }
+            .card-hover {
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+            .card-hover:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            }
+        }
+    </style>
 </head>
-<body>
-  <div class="roboto-light">This is entry 2.</div>
+<body class="bg-gradient-to-b from-pink-50 to-white min-h-screen font-cute">
+    <!-- Header Section -->
+    <header class="relative bg-gradient-to-r from-kittyPink to-kittyRed text-white py-12 md:py-20 overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-10 left-10 w-24 h-24 rounded-full bg-white"></div>
+            <div class="absolute top-40 right-20 w-16 h-16 rounded-full bg-white"></div>
+            <div class="absolute bottom-20 left-1/3 w-12 h-12 rounded-full bg-white"></div>
+            <div class="absolute bottom-40 right-1/4 w-20 h-20 rounded-full bg-white"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="text-center md:text-left mb-8 md:mb-0">
+                    <h1 class="text-4xl md:text-6xl font-bold mb-4 text-shadow">Hello Kitty's</h1>
+                    <h2 class="text-3xl md:text-5xl font-bold text-shadow">Stylish Outfits</h2>
+                    <p class="mt-4 text-lg md:text-xl max-w-md mx-auto md:mx-0">A showcase of Kitty's most fabulous fashion looks</p>
+                </div>
+                <div class="w-36 h-36 md:w-56 md:h-56 rounded-full overflow-hidden border-4 border-white shadow-lg">
+                    <img src="https://picsum.photos/seed/hellokittymain/300/300" alt="Hello Kitty portrait" class="w-full h-full object-cover">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Featured Outfits Section -->
+    <section class="py-16 bg-pink-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center text-kittyRed">Featured Styles</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Matcha Kitty -->
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
+                    <div class="h-64 bg-gradient-to-br from-green-50 to-green-100 flex items-center justify-center p-6">
+                        <img src="https://picsum.photos/seed/matchakitty/300/300" alt="Matcha Hello Kitty" class="w-40 h-40 object-contain">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2 text-green-700">Matcha Kitty</h3>
+                        <p class="text-gray-700">Inspired by Japan's beloved green tea, this outfit features soft green tones and matcha-themed accessories that are perfect for tea time gatherings.</p>
+                    </div>
+                </div>
+
+                <!-- Racing Kitty -->
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
+                    <div class="h-64 bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center p-6">
+                        <img src="https://picsum.photos/seed/racingkitty/300/300" alt="Racing Hello Kitty" class="w-40 h-40 object-contain">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2 text-blue-600">Racing Kitty</h3>
+                        <p class="text-gray-700">Ready for the track! This sporty outfit includes a racing jumpsuit, helmet, and racing boots - perfect for when Kitty feels the need for speed.</p>
+                    </div>
+                </div>
+
+                <!-- Dark Skin Kitty -->
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
+                    <div class="h-64 bg-gradient-to-br from-yellow-50 to-orange-50 flex items-center justify-center p-6">
+                        <img src="https://picsum.photos/seed/darkkitty/300/300" alt="Dark Skin Hello Kitty" class="w-40 h-40 object-contain">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2 text-orange-600">Dark Skin Kitty</h3>
+                        <p class="text-gray-700">With a beautiful sun-kissed complexion, this Kitty rocks a vibrant outfit that celebrates diversity and sunny days all year round.</p>
+                    </div>
+                </div>
+
+                <!-- School Uniform Kitty -->
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
+                    <div class="h-64 bg-gradient-to-br from-indigo-50 to-blue-50 flex items-center justify-center p-6">
+                        <img src="https://picsum.photos/seed/schoolkitty/300/300" alt="School Uniform Hello Kitty" class="w-40 h-40 object-contain">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2 text-indigo-600">School Uniform Kitty</h3>
+                        <p class="text-gray-700">Looking smart in her traditional school uniform, complete with a sailor-style top, pleated skirt, and backpack - ready for a day of learning!</p>
+                    </div>
+                </div>
+
+                <!-- Maid Kitty -->
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
+                    <div class="h-64 bg-gradient-to-br from-pink-50 to-purple-50 flex items-center justify-center p-6">
+                        <img src="https://picsum.photos/seed/maidkitty/300/300" alt="Maid Hello Kitty" class="w-40 h-40 object-contain">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2 text-pink-600">Maid Kitty</h3>
+                        <p class="text-gray-700">This charming maid outfit features a frilled dress, apron, and headpiece, perfect for serving tea and bringing a little elegance to any occasion.</p>
+                    </div>
+                </div>
+
+                <!-- Tennis Kitty -->
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
+                    <div class="h-64 bg-gradient-to-br from-green-50 to-teal-50 flex items-center justify-center p-6">
+                        <img src="file:///Users/yoyofu/Desktop/截屏2025-09-23%20下午4.16.47.png" alt="Tennis Hello Kitty" class="w-40 h-40 object-contain">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2 text-green-600">Tennis Kitty</h3>
+                        <p class="text-gray-700">Sporting a classic white tennis outfit with a cute headband, this Kitty is ready to serve up some fun on the tennis court.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+
 </body>
 </html>
+    

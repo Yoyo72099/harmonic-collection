@@ -4,143 +4,277 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hello Kitty's Stylish Outfits</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        kittyPink: '#FF9EB1',
-                        kittyRed: '#E60033',
-                        kittyYellow: '#FFD166',
-                        kittyBlue: '#4CC9F0',
-                        kittyGreen: '#4895EF',
-                        kittyBlack: '#2B2D42',
-                    },
-                    fontFamily: {
-                        cute: ['"Comic Sans MS"', '"Bubblegum Sans"', 'cursive'],
-                    }
-                }
-            }
-             </script>
-    <style type="text/tailwindcss">
-        @layer utilities {
-            .text-shadow {
-                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-            }
-            .card-hover {
-                transition: transform 0.3s ease, box-shadow 0.3s ease;
-            }
-            .card-hover:hover {
-                transform: translateY(-5px);
-                box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            }
+    <style>
+       {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-   
+
+        body {
+            font-family: "Comic Sans MS", "Bubblegum Sans", cursive;
+            background: #fff0f3;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
+        /* 头部样式 */
+        header {
+            background: #FF9EB1;
+            color: white;
+            padding: 30px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header .absolute-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+        }
+
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            background: white;
+        }
+
+        .circle1 {
+            top: 25px;
+            left: 25px;
+            width: 60px;
+            height: 60px;
+        }
+
+        .circle2 {
+            top: 100px;
+            right: 50px;
+            width: 40px;
+            height: 40px;
+        }
+
+        .circle3 {
+            bottom: 50px;
+            left: 33%;
+            width: 30px;
+            height: 30px;
+        }
+
+        .circle4 {
+            bottom: 100px;
+            right: 25%;
+            width: 50px;
+            height: 50px;
+        }
+
+        .header-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .header-text {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .header-text h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header-text p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .kitty-portrait {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .kitty-portrait img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* 特色款式区域 */
+        .featured-styles {
+            padding: 40px 0;
+            background-color: #fff0f3;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            color: #E60033;
+            margin-bottom: 30px;
+        }
+
+        .styles-grid {
+            display: block;
+        }
+
+        .style-card {
+            background-color: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .card-image-container {
+            height: 160px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            background: #f5f5f5;
+        }
+
+        .card-image {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+        }
+
+        .card-content {
+            padding: 16px;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .card-description {
+            color: #4b5563;
+            line-height: 1.5;
         }
     </style>
 </head>
-<body class="bg-gradient-to-b from-pink-50 to-white min-h-screen font-cute">
+<body>
    
-    <header class="relative bg-gradient-to-r from-kittyPink to-kittyRed text-white py-12 md:py-20 overflow-hidden">
-        <div class="absolute inset-0 opacity-10">
-            <div class="absolute top-10 left-10 w-24 h-24 rounded-full bg-white"></div>
-            <div class="absolute top-40 right-20 w-16 h-16 rounded-full bg-white"></div>
-            <div class="absolute bottom-20 left-1/3 w-12 h-12 rounded-full bg-white"></div>
-            <div class="absolute bottom-40 right-1/4 w-20 h-20 rounded-full bg-white"></div>
+    <header>
+        <div class="absolute-pattern">
+            <div class="circle circle1"></div>
+            <div class="circle circle2"></div>
+            <div class="circle circle3"></div>
+            <div class="circle circle4"></div>
         </div>
         
-        <div class="container mx-auto px-4 relative z-10">
-            <div class="flex flex-col md:flex-row items-center justify-between">
-                <div class="text-center md:text-left mb-8 md:mb-0">
-                    <h1 class="text-4xl md:text-6xl font-bold mb-4 text-shadow">Hello Kitty's</h1>
-                    <h2 class="text-3xl md:text-5xl font-bold text-shadow">Stylish Outfits</h2>
-                    <p class="mt-4 text-lg md:text-xl max-w-md mx-auto md:mx-0">A showcase of Kitty's most fabulous fashion looks</p>
+        <div class="container">
+            <div class="header-content">
+                <div class="header-text">
+                    <h1>Hello Kitty's</h1>
+                    <h2>Stylish Outfits</h2>
+                    <p>A showcase of Kitty's most fabulous fashion looks</p>
                 </div>
-                <div class="w-36 h-36 md:w-56 md:h-56 rounded-full overflow-hidden border-4 border-white shadow-lg">
-                    <img src="https://static.wikia.nocookie.net/hellokitty/images/5/52/Sanrio_Characters_Hello_Kitty_Image026.png/revision/latest?cb=20250110105831" alt="Hello Kitty portrait" class="w-full h-full object-cover">
+                <div class="kitty-portrait">
+                    <img src="https://static.wikia.nocookie.net/hellokitty/images/5/52/Sanrio_Characters_Hello_Kitty_Image026.png/revision/latest?cb=20250110105831" alt="Hello Kitty portrait">
                 </div>
             </div>
         </div>
     </header>
 
-    <section class="py-16 bg-pink-50">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center text-kittyRed">Featured Styles</h2>
+    <section class="featured-styles">
+        <div class="container">
+            <h2 class="section-title">Featured Styles</h2>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="styles-grid">
                 <!-- Matcha Kitty -->
-                <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
-                    <div class="h-64 bg-gradient-to-br from-green-50 to-green-100 flex items-center justify-center p-6">
-                        <img src="https://cdn11.bigcommerce.com/s-89ffd/images/stencil/728x728/products/165304/626454/nakajima-sanrio-plush-doll-matcha-kimono-s-hello-kitty__18837.1737076469.jpg?c=2" alt="Matcha Hello Kitty" class="w-40 h-40 object-contain">
+                <div class="style-card">
+                    <div class="card-image-container">
+                        <img src="https://cdn11.bigcommerce.com/s-89ffd/images/stencil/728x728/products/165304/626454/nakajima-sanrio-plush-doll-matcha-kimono-s-hello-kitty__18837.1737076469.jpg?c=2" alt="Matcha Hello Kitty" class="card-image">
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-bold mb-2 text-green-700">Matcha Kitty</h3>
-                        <p class="text-gray-700">Inspired by Japan's beloved green tea, this outfit features soft green tones and matcha themed accessories that are perfect for tea time gatherings.</p>
+                    <div class="card-content">
+                        <h3 class="card-title">Matcha Kitty</h3>
+                        <p class="card-description">Inspired by Japan's beloved green tea, this outfit features soft green tones and matcha themed accessories that are perfect for tea time gatherings.</p>
                     </div>
                 </div>
 
                 <!-- Racing Kitty -->
-                <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
-                    <div class="h-64 bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center p-6">
-                        <img src="https://www.kidrobot.com/cdn/shop/products/Kidrobot-Hello-Kitty-Tokyo-Speed-Racer-Plush-1.jpg?v=1753471435&width=250" alt="Racing Hello Kitty" class="w-40 h-40 object-contain">
+                <div class="style-card">
+                    <div class="card-image-container">
+                        <img src="https://www.kidrobot.com/cdn/shop/products/Kidrobot-Hello-Kitty-Tokyo-Speed-Racer-Plush-1.jpg?v=1753471435&width=250" alt="Racing Hello Kitty" class="card-image">
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-bold mb-2 text-blue-600">Racing Kitty</h3>
-                        <p class="text-gray-700">Ready for the track! This sporty outfit includes a racing jumpsuit, helmet, and racing boots - perfect for when Kitty feels the need for speed.</p>
+                    <div class="card-content">
+                        <h3 class="card-title">Racing Kitty</h3>
+                        <p class="card-description">Ready for the track! This sporty outfit includes a racing jumpsuit, helmet, and racing boots - perfect for when Kitty feels the need for speed.</p>
                     </div>
                 </div>
 
                 <!-- Dark Skin Kitty -->
-                <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
-                    <div class="h-64 bg-gradient-to-br from-yellow-50 to-orange-50 flex items-center justify-center p-6">
-                        <img src="https://ae01.alicdn.com/kf/Sb1064074518e407f8c4c14ee97921656r.jpg" alt="Dark Skin Hello Kitty" class="w-40 h-40 object-contain">
+                <div class="style-card">
+                    <div class="card-image-container">
+                        <img src="https://ae01.alicdn.com/kf/Sb1064074518e407f8c4c14ee97921656r.jpg" alt="Dark Skin Hello Kitty" class="card-image">
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-bold mb-2 text-orange-600">Dark Skin Kitty</h3>
-                        <p class="text-gray-700">With a beautiful sun kissed complexion, this Kitty rocks a vibrant outfit that celebrates diversity and sunny days all year round.</p>
+                    <div class="card-content">
+                        <h3 class="card-title">Dark Skin Kitty</h3>
+                        <p class="card-description">With a beautiful sun kissed complexion, this Kitty rocks a vibrant outfit that celebrates diversity and sunny days all year round.</p>
                     </div>
                 </div>
 
                 <!-- School Uniform Kitty -->
-                <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
-                    <div class="h-64 bg-gradient-to-br from-indigo-50 to-blue-50 flex items-center justify-center p-6">
-                        <img src="https://sogosogo.com.au/cdn/shop/files/02_0262800007250_1_l.jpg?v=1731422137" alt="School Uniform Hello Kitty" class="w-40 h-40 object-contain">
+                <div class="style-card">
+                    <div class="card-image-container">
+                        <img src="https://sogosogo.com.au/cdn/shop/files/02_0262800007250_1_l.jpg?v=1731422137" alt="School Uniform Hello Kitty" class="card-image">
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-bold mb-2 text-indigo-600">School Uniform Kitty</h3>
-                        <p class="text-gray-700">Looking smart in her traditional school uniform, complete with a sailor style top, pleated skirt, and backpack - ready for a day of learning!</p>
+                    <div class="card-content">
+                        <h3 class="card-title">School Uniform Kitty</h3>
+                        <p class="card-description">Looking smart in her traditional school uniform, complete with a sailor style top, pleated skirt, and backpack - ready for a day of learning!</p>
                     </div>
                 </div>
 
                 <!-- Maid Kitty -->
-                <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
-                    <div class="h-64 bg-gradient-to-br from-pink-50 to-purple-50 flex items-center justify-center p-6">
-                        <img src="https://www.japanla.com/cdn/shop/files/hkmaiddressplush.png?v=1735849465" alt="Maid Hello Kitty" class="w-40 h-40 object-contain">
+                <div class="style-card">
+                    <div class="card-image-container">
+                        <img src="https://www.japanla.com/cdn/shop/files/hkmaiddressplush.png?v=1735849465" alt="Maid Hello Kitty" class="card-image">
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-bold mb-2 text-pink-600">Maid Kitty</h3>
-                        <p class="text-gray-700">This charming maid outfit features a frilled dress, apron, and headpiece, perfect for serving tea and bringing a little elegance to any occasion.</p>
+                    <div class="card-content">
+                        <h3 class="card-title">Maid Kitty</h3>
+                        <p class="card-description">This charming maid outfit features a frilled dress, apron, and headpiece, perfect for serving tea and bringing a little elegance to any occasion.</p>
                     </div>
                 </div>
 
                 <!-- Tennis Kitty -->
-                <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
-                    <div class="h-64 bg-gradient-to-br from-green-50 to-teal-50 flex items-center justify-center p-6">
-                        <img src="https://ae01.alicdn.com/kf/Sc772c50d6e6349e8ab87837a292b8015H.jpg" alt="Tennis Hello Kitty" class="w-40 h-40 object-contain">
+                <div class="style-card">
+                    <div class="card-image-container">
+                        <img src="https://ae01.alicdn.com/kf/Sc772c50d6e6349e8ab87837a292b8015H.jpg" alt="Tennis Hello Kitty" class="card-image">
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-bold mb-2 text-green-600">Tennis Kitty</h3>
-                        <p class="text-gray-700">Sporting a classic white tennis outfit , this Kitty is ready to serve up some fun on the tennis court.</p>
+                    <div class="card-content">
+                        <h3 class="card-title">Tennis Kitty</h3>
+                        <p class="card-description">Sporting a classic white tennis outfit , this Kitty is ready to serve up some fun on the tennis court.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-    
-
 </body>
 </html>
     

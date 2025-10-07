@@ -1,9 +1,143 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>我的页面</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ME AND KITTY</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #fff0f5;
+            overflow: hidden;
+        }
+        
+
+        .page-title {
+            font-family: Arial, sans-serif;
+            font-size: 2.5rem;
+            color: #ff69b4;
+            margin-bottom: 60px; 
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .kitty-container {
+            position: relative;
+            width: 500px;
+            height: 500px;
+            transition: all 0.5s ease;
+        }
+        
+    
+        .kitty-image {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            z-index: 10;
+            object-fit: cover;
+        }
+        
+        /* Photo elements */
+        .photo {
+            position: absolute;
+            width: 200px;
+            height: 150px;
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+            opacity: 0;
+            z-index: 5;
+        }
+        
+        /* Photo positions */
+        .photo1 {
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%) scale(0.8);
+        }
+        
+        .photo2 {
+            top: 50%;
+            right: -100px;
+            transform: translateY(-50%) scale(0.8);
+        }
+        
+        .photo3 {
+            bottom: -100px;
+            left: 50%;
+            transform: translateX(-50%) scale(0.8);
+        }
+        
+        .photo4 {
+            top: 50%;
+            left: -100px;
+            transform: translateY(-50%) scale(0.8);
+        }
+        
+        .photo5 {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.8);
+            z-index: 1;
+        }
+        
+        /* Hover effect - expand photos */
+        .kitty-container:hover .photo {
+            opacity: 1;
+        }
+        
+        .kitty-container:hover .photo1 {
+            top: -150px;
+            transform: translateX(-50%) scale(1);
+        }
+        
+        .kitty-container:hover .photo2 {
+            right: -150px;
+            transform: translateY(-50%) scale(1);
+        }
+        
+        .kitty-container:hover .photo3 {
+            bottom: -150px;
+            transform: translateX(-50%) scale(1);
+        }
+        
+        .kitty-container:hover .photo4 {
+            left: -150px;
+            transform: translateY(-50%) scale(1);
+        }
+        
+        .kitty-container:hover .photo5 {
+            transform: translate(-50%, -50%) scale(1.2);
+        }
+    </style>
 </head>
 <body>
-    <h1>Hello, GitHub!</h1>
+    <h1 class="page-title">ME AND KITTY</h1>
+    
+    <div class="kitty-container">
+        <!-- 中间的猫咪图片 -->
+        <img src="https://picsum.photos/seed/kitty-main/400/400" alt="Kitty" class="kitty-image">
+
+        <div class="photo photo1" style="background-image: url('https://picsum.photos/seed/kitty1/400/300');"></div>
+        <div class="photo photo2" style="background-image: url('https://picsum.photos/seed/kitty2/400/300');"></div>
+        <div class="photo photo3" style="background-image: url('https://picsum.photos/seed/kitty3/400/300');"></div>
+        <div class="photo photo4" style="background-image: url('https://picsum.photos/seed/kitty4/400/300');"></div>
+        <div class="photo photo5" style="background-image: url('https://picsum.photos/seed/kitty5/400/300');"></div>
+    </div>
 </body>
 </html>

@@ -15,35 +15,37 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
             background-color: #fff0f5;
-            overflow: hidden;
+            padding: 20px 0; 
+            overflow: auto; 
         }
         
-
+   
         .page-title {
             font-family: Arial, sans-serif;
             font-size: 2.5rem;
             color: #ff69b4;
-            margin-bottom: 60px; 
+            margin: 30px 0 120px 0;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 100%; 
         }
         
         .kitty-container {
             position: relative;
             width: 500px;
-            height: 500px;
+            height: 600px;
             transition: all 0.5s ease;
+            margin-top: 50px;
         }
-        
-    
+
         .kitty-image {
             position: absolute;
             width: 300px;
             height: 300px;
             border-radius: 50%;
-            top: 50%;
+            top: 60%;
             left: 50%;
             transform: translate(-50%, -50%);
             box-shadow: 0 0 20px rgba(0,0,0,0.1);
@@ -51,7 +53,6 @@
             object-fit: cover;
         }
         
-        /* Photo elements */
         .photo {
             position: absolute;
             width: 200px;
@@ -63,46 +64,45 @@
             opacity: 0;
             z-index: 5;
         }
-        
-        /* Photo positions */
+
         .photo1 {
-            top: -100px;
+            top: 50px;
             left: 50%;
             transform: translateX(-50%) scale(0.8);
         }
         
         .photo2 {
-            top: 50%;
+            top: 60%;
             right: -100px;
             transform: translateY(-50%) scale(0.8);
         }
         
         .photo3 {
-            bottom: -100px;
+            bottom: 50px; 
             left: 50%;
             transform: translateX(-50%) scale(0.8);
         }
         
         .photo4 {
-            top: 50%;
+            top: 60%;
             left: -100px;
             transform: translateY(-50%) scale(0.8);
         }
         
         .photo5 {
-            top: 50%;
+            top: 60%;
             left: 50%;
             transform: translate(-50%, -50%) scale(0.8);
             z-index: 1;
         }
         
-        /* Hover effect - expand photos */
+      
         .kitty-container:hover .photo {
             opacity: 1;
         }
         
         .kitty-container:hover .photo1 {
-            top: -150px;
+            top: -20px; 
             transform: translateX(-50%) scale(1);
         }
         
@@ -112,7 +112,7 @@
         }
         
         .kitty-container:hover .photo3 {
-            bottom: -150px;
+            bottom: -20px;
             transform: translateX(-50%) scale(1);
         }
         
@@ -127,12 +127,13 @@
     </style>
 </head>
 <body>
+
     <h1 class="page-title">ME AND KITTY</h1>
     
+  
     <div class="kitty-container">
-        <!-- 中间的猫咪图片 -->
-        <img src="https://picsum.photos/seed/kitty-main/400/400" alt="Kitty" class="kitty-image">
-
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZHZdsd9lsOMlXcLFIdPranZnYh0c8KDGL1_29CjqR1VfmQpiYAb_5c0PMjLR4JVcagk8O" alt="Kitty" class="kitty-image">
+        
         <div class="photo photo1" style="background-image: url('https://picsum.photos/seed/kitty1/400/300');"></div>
         <div class="photo photo2" style="background-image: url('https://picsum.photos/seed/kitty2/400/300');"></div>
         <div class="photo photo3" style="background-image: url('https://picsum.photos/seed/kitty3/400/300');"></div>

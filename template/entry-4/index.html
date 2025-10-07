@@ -35,11 +35,11 @@
             height: 1000px;
         }
         
-   
+        /* 中间圆形图片 - 放大尺寸 */
         .kitty-image {
             position: absolute;
-            width: 400px;
-            height: 400px;
+            width: 280px; /* 从200px放大到280px */
+            height: 280px; /* 从200px放大到280px */
             border-radius: 50%;
             top: 50%;
             left: 50%;
@@ -49,11 +49,11 @@
             z-index: 10;
         }
         
-        /* 照片样式 */
+        /* 照片样式保持不变 */
         .photo {
             position: absolute;
-            width: 400px;
-            height: 400px;
+            width: 180px;
+            height: 140px;
             background-size: cover;
             background-position: center;
             border: 3px solid white;
@@ -77,28 +77,28 @@
             transform: translate(-50%, 0) scale(0.5);
         }
         
- 
+        /* 右上方：靠右且低于正上方照片 */
         .photo2 {
             top: 250px;
             right: 80px;
             transform: scale(0.5);
         }
         
-
+        /* 右下方：靠右且低于右上方 */
         .photo3 {
             bottom: 250px;
             right: 80px;
             transform: scale(0.5);
         }
         
-  
+        /* 正下方：单独一行，无重叠 */
         .photo4 {
             bottom: 80px;
             left: 50%;
             transform: translate(-50%, 0) scale(0.5);
         }
         
-   
+        /* 左方：靠左中间，与其他方向完全错开 */
         .photo5 {
             top: 50%;
             left: 80px;

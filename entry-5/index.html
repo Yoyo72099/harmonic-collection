@@ -1,159 +1,255 @@
-以下是进一步一步简化后的页面，移除了about部分、底部的learn more内容以及相关元素，只保留核心的朋友介绍功能：
-
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hello Kitty's Friends</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    
-    <!-- Tailwind Configuration -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#FF9BB3',
-                        secondary: '#FFD1DC',
-                        accent: '#FF6B8B',
-                        light: '#FFF5F7',
-                        dark: '#8A5A6D'
-                    },
-                    fontFamily: {
-                        cute: ['"Comic Sans MS"', '"Bubblegum Sans"', 'cursive']
-                    }
-                }
-            }
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #FFF5F7;
+            color: #8A5A6D;
         }
-    </script>
-    
-    <style type="text/tailwindcss">
-        @layer utilities {
-            .text-shadow {
-                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-            }
+        
+        header {
+            background: linear-gradient(to right, #FF9BB3, #FF6B8B);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        header p {
+            margin: 10px 0 0;
+            font-size: 1.1em;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        nav {
+            background-color: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+        }
+        
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        
+        nav li {
+            display: inline;
+        }
+        
+        nav a {
+            color: #8A5A6D;
+            text-decoration: none;
+            padding: 0 10px;
+        }
+        
+        nav a:hover {
+            color: #FF6B8B;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        #friends {
+            padding: 50px 0;
+            background-color: #FFD1DC33;
+        }
+        
+        h2 {
+            text-align: center;
+            color: #FF6B8B;
+            font-size: 2em;
+            margin-top: 0;
+            margin-bottom: 30px;
+        }
+        
+        .friends-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .friend-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .friend-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .friend-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .friend-image img:hover {
+            transform: scale(1.05);
+        }
+        
+        .friend-info {
+            padding: 20px;
+        }
+        
+        .friend-info h3 {
+            color: #FF6B8B;
+            margin-top: 0;
+            font-size: 1.5em;
+        }
+        
+        .friend-info p {
+            line-height: 1.6;
+        }
+        
+        .fun-fact {
+            font-weight: bold;
+        }
+        
+        footer {
+            background-color: #8A5A6D;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 30px;
+        }
+        
+        #back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #FF6B8B;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 20px;
+            cursor: pointer;
+            display: none;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
     </style>
 </head>
-<body class="bg-light font-cute text-dark">
+<body>
     <!-- Header Section -->
-    <header class="bg-gradient-to-r from-primary to-accent text-white py-12 px-4 shadow-lg">
-        <div class="container mx-auto text-center">
-            <h1 class="text-[clamp(2.5rem,5vw,4rem)] font-bold mb-4 text-shadow">Hello Kitty's Friends</h1>
-            <p class="text-[clamp(1rem,2vw,1.25rem)] max-w-2xl mx-auto">Discover the wonderful friends that make Hello Kitty's world special!</p>
-        </div>
+    <header>
+        <h1>Hello Kitty's Friends</h1>
+        <p>Discover the wonderful friends that make Hello Kitty's world special!</p>
     </header>
 
     <!-- Navigation -->
-    <nav class="sticky top-0 bg-white shadow-md z-50">
-        <div class="container mx-auto px-4">
-            <ul class="flex justify-center py-4">
-                <li><a href="#friends" class="hover:text-accent transition-colors duration-300"><i class="fa fa-users mr-1"></i> Friends</a></li>
-            </ul>
-        </div>
+    <nav>
+        <ul>
+            <li><a href="#friends">Friends</a></li>
+        </ul>
     </nav>
 
     <!-- Friends Section -->
-    <section id="friends" class="py-16 px-4 bg-secondary/30">
-        <div class="container mx-auto">
-            <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] text-center mb-12 text-accent">Meet The Friends</h2>
+    <section id="friends">
+        <div class="container">
+            <h2>Meet The Friends</h2>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="friends-grid">
                 <!-- My Melody -->
-                <div class="bg-white rounded-2xl shadow-md overflow-hidden">
-                    <div class="h-56 bg-primary/20 flex items-center justify-center">
-                        <i class="fa fa-music text-8xl text-primary"></i>
+                <div class="friend-card">
+                    <div class="friend-image">
+                        <img src="https://source.unsplash.com/random/300x200/?my%20melody,hello%20kitty" alt="My Melody">
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-bold mb-2 text-accent">My Melody</h3>
-                        <p class="mb-3">Hello Kitty's best friend who wears a red hood. She's kind and gentle, always willing to help others.</p>
-                        <p><span class="font-bold">Fun fact:</span> She loves baking cookies and collecting ribbons.</p>
+                    <div class="friend-info">
+                        <h3>My Melody</h3>
+                        <p>Hello Kitty's best friend who wears a red hood. She's kind and gentle, always willing to help others.</p>
+                        <p><span class="fun-fact">Fun fact:</span> She loves baking cookies and collecting ribbons.</p>
                     </div>
                 </div>
 
                 <!-- Cinnamoroll -->
-                <div class="bg-white rounded-2xl shadow-md overflow-hidden">
-                    <div class="h-56 bg-primary/20 flex items-center justify-center">
-                        <i class="fa fa-cloud text-8xl text-primary"></i>
+                <div class="friend-card">
+                    <div class="friend-image">
+                        <img src="https://source.unsplash.com/random/300x200/?cinnamoroll,hello%20kitty" alt="Cinnamoroll">
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-bold mb-2 text-accent">Cinnamoroll</h3>
-                        <p class="mb-3">A small white puppy with long ears that enable him to fly. He's shy but very friendly.</p>
-                        <p><span class="font-bold">Fun fact:</span> He was born on a cloud and can fly using his big ears.</p>
+                    <div class="friend-info">
+                        <h3>Cinnamoroll</h3>
+                        <p>A small white puppy with long ears that enable him to fly. He's shy but very friendly.</p>
+                        <p><span class="fun-fact">Fun fact:</span> He was born on a cloud and can fly using his big ears.</p>
                     </div>
                 </div>
 
                 <!-- Pompompurin -->
-                <div class="bg-white rounded-2xl shadow-md overflow-hidden">
-                    <div class="h-56 bg-primary/20 flex items-center justify-center">
-                        <i class="fa fa-dog text-8xl text-primary"></i>
+                <div class="friend-card">
+                    <div class="friend-image">
+                        <img src="https://source.unsplash.com/random/300x200/?pompompurin,hello%20kitty" alt="Pompompurin">
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-bold mb-2 text-accent">Pompompurin</h3>
-                        <p class="mb-3">A golden retriever dog who loves to sleep and collect shoes. He's laid-back and friendly.</p>
-                        <p><span class="font-bold">Fun fact:</span> His favorite food is pudding, which inspired his name.</p>
+                    <div class="friend-info">
+                        <h3>Pompompurin</h3>
+                        <p>A golden retriever dog who loves to sleep and collect shoes. He's laid-back and friendly.</p>
+                        <p><span class="fun-fact">Fun fact:</span> His favorite food is pudding, which inspired his name.</p>
                     </div>
                 </div>
 
                 <!-- Kuromi -->
-                <div class="bg-white rounded-2xl shadow-md overflow-hidden">
-                    <div class="h-56 bg-primary/20 flex items-center justify-center">
-                        <i class="fa fa-heart-broken text-8xl text-primary"></i>
+                <div class="friend-card">
+                    <div class="friend-image">
+                        <img src="https://source.unsplash.com/random/300x200/?kuromi,hello%20kitty" alt="Kuromi">
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-bold mb-2 text-accent">Kuromi</h3>
-                        <p class="mb-3">My Melody's playful rival with a mischievous personality. She loves writing in her diary.</p>
-                        <p><span class="font-bold">Fun fact:</span> She has a gang of friends called the Kuromi Gang.</p>
+                    <div class="friend-info">
+                        <h3>Kuromi</h3>
+                        <p>My Melody's playful rival with a mischievous personality. She loves writing in her diary.</p>
+                        <p><span class="fun-fact">Fun fact:</span> She has a gang of friends called the Kuromi Gang.</p>
                     </div>
                 </div>
 
                 <!-- Keroppi -->
-                <div class="bg-white rounded-2xl shadow-md overflow-hidden">
-                    <div class="h-56 bg-primary/20 flex items-center justify-center">
-                        <i class="fa fa-frog text-8xl text-primary"></i>
+                <div class="friend-card">
+                    <div class="friend-image">
+                        <img src="https://source.unsplash.com/random/300x200/?keroppi,hello%20kitty" alt="Keroppi">
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-bold mb-2 text-accent">Keroppi</h3>
-                        <p class="mb-3">A cheerful frog who lives in Donut Pond. He's active and loves playing sports with friends.</p>
-                        <p><span class="font-bold">Fun fact:</span> He has a brother named Keroppe and a sister named Keroleen.</p>
+                    <div class="friend-info">
+                        <h3>Keroppi</h3>
+                        <p>A cheerful frog who lives in Donut Pond. He's active and loves playing sports with friends.</p>
+                        <p><span class="fun-fact">Fun fact:</span> He has a brother named Keroppe and a sister named Keroleen.</p>
                     </div>
                 </div>
 
                 <!-- Badtz-Maru -->
-                <div class="bg-white rounded-2xl shadow-md overflow-hidden">
-                    <div class="h-56 bg-primary/20 flex items-center justify-center">
-                        <i class="fa fa-anchor text-8xl text-primary"></i>
+                <div class="friend-card">
+                    <div class="friend-image">
+                        <img src="https://source.unsplash.com/random/300x200/?badtz-maru,hello%20kitty" alt="Badtz-Maru">
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-bold mb-2 text-accent">Badtz-Maru</h3>
-                        <p class="mb-3">A penguin with a bad attitude but a good heart. He loves practical jokes and skateboarding.</p>
-                        <p><span class="font-bold">Fun fact:</span> He lives in Gorgeoustown with his pet alligator, Pochi.</p>
+                    <div class="friend-info">
+                        <h3>Badtz-Maru</h3>
+                        <p>A penguin with a bad attitude but a good heart. He loves practical jokes and skateboarding.</p>
+                        <p><span class="fun-fact">Fun fact:</span> He lives in Gorgeoustown with his pet alligator, Pochi.</p>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-dark text-white py-6 px-4">
-        <div class="container mx-auto text-center">
-            <p>&copy; 2023 Hello Kitty Friends Fan Page. All characters are property of Sanrio.</p>
-        </div>
-    </footer>
-
-    <!-- Back to top button -->
-    <button id="back-to-top" class="fixed bottom-6 right-6 bg-accent text-white p-3 rounded-full shadow-lg">
-        <i class="fa fa-arrow-up"></i>
-    </button>
-
-   
+           
+                });
             }
         });
     </script>
 </body>
 </html>
-```
-

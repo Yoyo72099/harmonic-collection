@@ -14,7 +14,6 @@
         }
         
         header {
-            /* 标题背景图：拉斯维加斯F1夜景，设置覆盖、居中，叠加半透明黑色增强文字可读性 */
             background-image: url('https://github.com/Yoyo72099/harmonic-collection/blob/main/F1_KeyArtAssets_SINC-01_1920x1080.jpg?raw=true');
             background-size: cover;
             background-position: center;
@@ -25,7 +24,7 @@
             position: relative;
         }
         
-        /* 背景图叠加层，避免文字与背景混淆 */
+
         header::before {
             content: '';
             position: absolute;
@@ -36,7 +35,7 @@
             background-color: rgba(0, 0, 0, 0.5);
         }
         
-        /* 确保标题文字在叠加层之上 */
+
         header h1, header p {
             position: relative;
             z-index: 1;

@@ -116,7 +116,7 @@
 <body>
     <header>
         <h1>Hello Kitty Parks Worldwide</h1>
-        <p>Explore cute and magical Hello Kitty-themed parks around the globe</p>
+        <p>Explore cute and magical Hello Kitty themed parks around the globe</p>
     </header>
 
     <div class="container">
@@ -136,7 +136,7 @@
         </div>
     </div>
 
-    <!-- Detail Modal -->
+
     <div id="modal">
         <div id="modal-content">
             <span id="close-modal" onclick="closeModal()">&times;</span>
@@ -156,7 +156,7 @@
                 region: "asia",
                 location: "Tama City, Tokyo, Japan",
                 img: "https://github.com/Yoyo72099/harmonic-collection/blob/main/截屏2025-11-10%20下午8.53.16.png?raw=true",
-                intro: "Japan's iconic Hello Kitty theme park with live shows, parades, and character meet-ups.",
+                intro: "Japan's iconic Hello Kitty theme park with live shows, parades, and character meet ups.",
                 detail: "Known as the 'Hello Kitty Land of Dreams,' Sanrio Puroland opened in 1990. The park features 6 themed zones with rides, interactive attractions, and daily stage performances starring Hello Kitty and other Sanrio characters. Don't miss the glittering evening parade and exclusive character dining experiences."
             },
             {
@@ -174,7 +174,7 @@
                 region: "asia",
                 location: "Anji County, Zhejiang, China",
                 img: "https://github.com/Yoyo72099/harmonic-collection/blob/main/截屏2025-11-11%20上午12.52.10.png?raw=true",
-                intro: "China's first Hello Kitty-themed resort with a full-scale amusement park.",
+                intro: "China's first Hello Kitty themed resort with a full-scale amusement park.",
                 detail: "Spanning 1.6 square kilometers, this resort features a pink castle, over 30 rides, and a dedicated Hello Kitty hotel. The park blends Sanrio's cute aesthetic with traditional Chinese garden elements, offering unique attractions like the Hello Kitty Ferris wheel and seasonal themed events throughout the year."
             },
             {
@@ -183,8 +183,8 @@
                 region: "northamerica",
                 location: "Irvine, California, USA",
                 img: "https://raw.githubusercontent.com/Yoyo72099/harmonic-collection/e85b55168d0183a58635fcd08757de5433c20f1c/截屏2025-11-11%20上午12.54.32.png",
-                intro: "America's largest Hello Kitty-themed complex with shops, cafes, and interactive exhibits.",
-                detail: "Located within the Irvine Spectrum Center, Hello Kitty Village features a flagship store with exclusive US merchandise, a Hello Kitty café serving character-themed treats, and rotating interactive exhibits. It's a popular spot for photos with life-sized Hello Kitty statues and seasonal decorations."
+                intro: "America's largest Hello Kitty themed complex with shops, cafes, and interactive exhibits.",
+                detail: "Located within the Irvine Spectrum Center, Hello Kitty Village features a flagship store with exclusive US merchandise, a Hello Kitty café serving character themed treats, and rotating interactive exhibits. It's a popular spot for photos with life sized Hello Kitty statues and seasonal decorations."
             },
             {
                 id: 5,
@@ -193,7 +193,7 @@
                 location: "London, United Kingdom",
                 img: "https://raw.githubusercontent.com/Yoyo72099/harmonic-collection/3234eb985e39ab404e937dc78065b04267bda203/截屏2025-11-11%20上午12.56.00.png",
                 intro: "A seasonal Hello Kitty experience in London's iconic Covent Garden.",
-                detail: "This limited-time pop-up features photo zones, exclusive UK merchandise, and character appearances. The park celebrates British culture through Hello Kitty's eyes, with special events like afternoon tea with Hello Kitty and royal-themed photo backdrops. It typically runs during school holidays and attracts visitors of all ages."
+                detail: "This limited time pop up features photo zones, exclusive UK merchandise, and character appearances. The park celebrates British culture through Hello Kitty's eyes, with special events like afternoon tea with Hello Kitty and royal-themed photo backdrops. It typically runs during school holidays and attracts visitors of all ages."
             }
         ];
 
@@ -202,7 +202,7 @@
             renderParks(helloKittyParks);
         });
 
-        // Function to render park cards (uses loops)
+        //  loops
         function renderParks(parks) {
             const container = document.getElementById("parks-container");
             container.innerHTML = ""; // Clear existing content
@@ -229,7 +229,7 @@
             }
         }
 
-        // Function to filter parks (uses conditionals)
+        // conditionals
         function filterParks() {
             const selectedRegion = document.getElementById("region-filter").value;
             let filteredParks;
@@ -250,7 +250,7 @@
             renderParks(filteredParks); // Display filtered results
         }
 
-        // Function to open modal
+        // open modal
         function openModal(park) {
             const modal = document.getElementById("modal");
             document.getElementById("modal-img").src = park.img;
@@ -260,7 +260,7 @@
             modal.style.display = "block";
         }
 
-        // Function to close modal
+        // close modal
         function closeModal() {
             document.getElementById("modal").style.display = "none";
         }

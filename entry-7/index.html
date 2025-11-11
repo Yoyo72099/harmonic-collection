@@ -1,1 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello Kitty Parks Worldwide</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fdf2f8;
+            color: #333;
+        }
+        header {
+            background-color: #ff9db4;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        .filter {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .filter select {
+            padding: 0.5rem;
+            border: 1px solid #ffccd5;
+            border-radius: 4px;
+            margin-right: 1rem;
+        }
+        .filter button {
+            padding: 0.5rem 1rem;
+            background: #ff9db4;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .parks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .park-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .park-card:hover {
+            transform: scale(1.03);
+        }
+        .park-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .park-info {
+            padding: 1rem;
+        }
+        .park-info h3 {
+            color: #ff6b9e;
+            margin: 0 0 0.5rem;
+        }
+        .park-info .location {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        #modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 100;
+        }
+        #modal-content {
+            background: white;
+            width: 80%;
+            max-width: 600px;
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 8px;
+            position: relative;
+        }
+        #close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #ff6b9e;
+        }
+        #modal-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Hello Kitty Parks Worldwide</h1>
+        <p>Explore cute and magical Hello Kitty-themed parks around the globe</p>
+    </header>
 
+    <div class="container">
+        <div class="filter">
+            <label for="region-filter">Filter by Continent:</label>
+            <select id="region-filter">
+                <option value="all">Worldwide</option>
+                <option value="asia">Asia</option>
+                <option value="northamerica">North America</option>
+                <option value="europe">Europe</option>
+            </select>
+            <button onclick="filterParks()">Filter</button>
+        </div>
+
+        <div class="parks-grid" id="parks-container">
+            <!-- Park cards will be rendered dynamically with JS -->
+        </div>
+    </div>
+
+    <!-- Detail Modal -->
+    <div id="modal">
+        <div id="modal-content">
+            <span id="close-modal" onclick="closeModal()">&times;</span>
+            <img id="modal-img" src="" alt="Park image">
+            <h2 id="modal-title"></h2>
+            <p id="modal-location"></p>
+            <p id="modal-desc"></p>
+        </div>
+    </div>
+
+    <script>
+        // Global Hello Kitty parks data
+        const helloKittyParks = [
+            {
+                id: 1,
+                name: "Sanrio Puroland",
+                region: "asia",
+                location: "Tama City, Tokyo, Japan",
+                img: "https://github.com/Yoyo72099/harmonic-collection/blob/main/截屏2025-11-10%20下午8.53.16.png?raw=true",
+                intro: "Japan's iconic Hello Kitty theme park with live shows, parades, and character meet-ups.",
+                detail: "Known as the 'Hello Kitty Land of Dreams,' Sanrio Puroland opened in 1990. The park features 6 themed zones with rides, interactive attractions, and daily stage performances starring Hello Kitty and other Sanrio characters. Don't miss the glittering evening parade and exclusive character dining experiences."
+            },
+            {
+                id: 2,
+                name: "Hello Kitty Town",
+                region: "asia",
+                location: "Iskandar Puteri, Johor, Malaysia",
+                img: "https://source.unsplash.com/random/600x400/?hellokitty,town,malaysia",
+                intro: "Southeast Asia's premier Hello Kitty attraction with immersive themed areas.",
+                detail: "Part of the Puteri Harbour Family Theme Park, Hello Kitty Town offers 11 interactive zones including Kitty's House, Pochacco's Playground, and a themed theater. The park combines education with entertainment, featuring craft workshops and character encounters designed for young families."
+            },
+            {
+                id: 3,
+                name: "Hello Kitty Grand Hotel & Park",
+                region: "asia",
+                location: "Anji County, Zhejiang, China",
+                img: "https://source.unsplash.com/random/600x400/?hellokitty,park,china",
+                intro: "China's first Hello Kitty-themed resort with a full-scale amusement park.",
+                detail: "Spanning 1.6 square kilometers, this resort features a pink castle, over 30 rides, and a dedicated Hello Kitty hotel. The park blends Sanrio's cute aesthetic with traditional Chinese garden elements, offering unique attractions like the Hello Kitty Ferris wheel and seasonal themed events throughout the year."
+            },
+            {
+                id: 4,
+                name: "Hello Kitty Village",
+                region: "northamerica",
+                location: "Irvine, California, USA",
+                img: "https://source.unsplash.com/random/600x400/?hellokitty,village,usa",
+                intro: "America's largest Hello Kitty-themed complex with shops, cafes, and interactive exhibits.",
+                detail: "Located within the Irvine Spectrum Center, Hello Kitty Village features a flagship store with exclusive US merchandise, a Hello Kitty café serving character-themed treats, and rotating interactive exhibits. It's a popular spot for photos with life-sized Hello Kitty statues and seasonal decorations."
+            },
+            {
+                id: 5,
+                name: "Hello Kitty Pop-Up Park",
+                region: "europe",
+                location: "London, United Kingdom",
+                img: "https://source.unsplash.com/random/600x400/?hellokitty,london,europe",
+                intro: "A seasonal Hello Kitty experience in London's iconic Covent Garden.",
+                detail: "This limited-time pop-up features photo zones, exclusive UK merchandise, and character appearances. The park celebrates British culture through Hello Kitty's eyes, with special events like afternoon tea with Hello Kitty and royal-themed photo backdrops. It typically runs during school holidays and attracts visitors of all ages."
+            }
+        ];
+
+        // Render parks when page loads
+        document.addEventListener("DOMContentLoaded", function() {
+            renderParks(helloKittyParks);
+        });
+
+        // Function to render park cards (uses loops)
+        function renderParks(parks) {
+            const container = document.getElementById("parks-container");
+            container.innerHTML = ""; // Clear existing content
+
+            // Loop through parks array to create cards
+            for (let i = 0; i < parks.length; i++) {
+                const park = parks[i];
+                const card = document.createElement("div");
+                card.className = "park-card";
+                card.onclick = function() {
+                    openModal(park);
+                };
+
+                card.innerHTML = `
+                    <img src="${park.img}" alt="${park.name}">
+                    <div class="park-info">
+                        <h3>${park.name}</h3>
+                        <p class="location">📍 ${park.location}</p>
+                        <p>${park.intro}</p>
+                    </div>
+                `;
+
+                container.appendChild(card);
+            }
+        }
+
+        // Function to filter parks (uses conditionals)
+        function filterParks() {
+            const selectedRegion = document.getElementById("region-filter").value;
+            let filteredParks;
+
+            // Conditional logic to filter by continent
+            if (selectedRegion === "all") {
+                filteredParks = helloKittyParks;
+            } else {
+                filteredParks = [];
+                // Loop through parks to find matches
+                for (let park of helloKittyParks) {
+                    if (park.region === selectedRegion) {
+                        filteredParks.push(park);
+                    }
+                }
+            }
+
+            renderParks(filteredParks); // Display filtered results
+        }
+
+        // Function to open modal
+        function openModal(park) {
+            const modal = document.getElementById("modal");
+            document.getElementById("modal-img").src = park.img;
+            document.getElementById("modal-title").textContent = park.name;
+            document.getElementById("modal-location").textContent = `📍 ${park.location}`;
+            document.getElementById("modal-desc").textContent = park.detail;
+            modal.style.display = "block";
+        }
+
+        // Function to close modal
+        function closeModal() {
+            document.getElementById("modal").style.display = "none";
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById("modal");
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>

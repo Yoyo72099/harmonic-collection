@@ -1,10 +1,31 @@
-/* CSS 控制样式：圆形的大小、颜色、居中方式 */
+/* 重置默认样式，确保页面无内外边距 */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* 页面整体布局：让圆形居中 */
+body {
+    min-height: 100vh; /* 页面高度占满视口 */
+    display: flex;
+    justify-content: center; /* 水平居中 */
+    align-items: center; /* 垂直居中 */
+    background-color: #f0f0f0; /* 浅灰背景，突出圆形 */
+}
+
+/* 圆形样式 */
 #circle {
-  width: 50vh; /* 尺寸 */
-  height: 50vh;
-  border-radius: 50%; /* 圆角（圆形） */
-  background-color: blue; /* 颜色 */
-  display: flex; /* 布局（居中内容） */
-  justify-content: center;
-  align-items: center;
+    width: 50vh; /* 直径 = 视口高度的50% */
+    height: 50vh;
+    border-radius: 50%; /* 圆角=50%，变成圆形 */
+    background-color: blue; /* 初始蓝色 */
+    color: white; /* 文字白色，与蓝色背景对比 */
+    font-family: Arial, sans-serif; /* 字体 */
+    padding: 20px; /* 内部间距，避免文字贴边 */
+    display: flex;
+    flex-direction: column; /* 文字垂直排列 */
+    justify-content: center; /* 内容垂直居中 */
+    align-items: center; /* 内容水平居中 */
+    text-align: center; /* 文字居中对齐 */
+    overflow: auto; /* 当内容过长时，允许滚动 */
 }

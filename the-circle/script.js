@@ -6,8 +6,8 @@ const myHouse = {
     isFurnished: true, 
     amenities: ["WiFi", "Air Conditioner", "Washing Machine", "Balcony"], 
     location: { 
-        city: "Shanghai",
-        district: "Pudong",
+        city: "New York",
+        district: "Manhattan",
         distanceToSubway: 0.8 
     }
 };

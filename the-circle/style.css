@@ -25,7 +25,7 @@ body{
     text-aligh:center;
     overflow-y:auto;
 }
-#circle button{
+#circle-button{
     margin-top:2vh;
     padding:1vh 2vh;
     boarder:none;
@@ -36,7 +36,7 @@ body{
     color:blue;
     transition:all 0.3s;
 }
-circle botton:hover{
+circle-botton:hover{
     background-color:#e0e0e0;
 }
     

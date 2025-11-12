@@ -1,54 +1,13 @@
-// Fictional character object (Hermione Granger from Harry Potter)
-const hermione = {
-    fullName: "Hermione Jean Granger",
-    age: 17,
-    house: "Gryffindor",
-    abilities: ["Witchcraft", "Logic", "Quick thinking", "Polyjuice Potion mastery"],
-    wand: {
-        wood: "Vine",
-        core: "Dragon heartstring",
-        length: 10.75 // inches
-    },
-    isPrefect: true,
-    patronus: "Otter"
-};
+// JS 处理行为：定义数据、动态插入内容、处理点击事件
+const hermione = { /* 角色数据 */ };
 
-// Function to display character info in console
+// 动态往圆形里插入信息（DOM 操作）
 function displayCharacterInfo() {
-    let infoText = "\nHermione Granger Info:\n";
-    infoText += "=======================\n";
-
-    // Loop through object properties to build display text
-    for (const key in hermione) {
-        const value = hermione[key];
-        
-        if (Array.isArray(value)) {
-            // Format arrays as comma-separated lists
-            infoText += `${key}: ${value.join(", ")}\n`;
-        } else if (typeof value === "object" && value !== null) {
-            // Format nested objects
-            let nestedInfo = "";
-            for (const nestedKey in value) {
-                nestedInfo += `${nestedKey}: ${value[nestedKey]}, `;
-            }
-            infoText += `${key}: ${nestedInfo.slice(0, -2)}\n`; // Remove trailing comma
-        } else {
-            // Format basic types (strings, numbers, booleans)
-            infoText += `${key}: ${value}\n`;
-        }
-    }
-
-    // Output to console
-    console.log(infoText);
+  const circle = document.getElementById("circle");
+  // ... 生成内容并插入 ...
 }
 
-// Function to simulate color change (console message)
+// 处理点击事件（改变颜色）
 function makeItGreen() {
-    console.log("\nCircle color changed to green");
+  document.getElementById("circle").style.backgroundColor = "green";
 }
-
-// Display character info when the script runs
-displayCharacterInfo();
-
-// Example call to color change function
-makeItGreen();

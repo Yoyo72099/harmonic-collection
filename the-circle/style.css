@@ -1,1 +1,10 @@
-
+/* CSS 控制样式：圆形的大小、颜色、居中方式 */
+#circle {
+  width: 50vh; /* 尺寸 */
+  height: 50vh;
+  border-radius: 50%; /* 圆角（圆形） */
+  background-color: blue; /* 颜色 */
+  display: flex; /* 布局（居中内容） */
+  justify-content: center;
+  align-items: center;
+}

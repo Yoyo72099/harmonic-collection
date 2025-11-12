@@ -1,49 +1,46 @@
-
-* {
+{
     margin: 0;
     padding: 0;
 }
 
-
-body {
-    min-height: 100vh; 
-    display: flex;
-    justify-content: center; 
-    align-items: center; 
-    background-color: #f5f5f5;
+body{
+    min-height:100vh;
+    display:felx;
+    jusify-content:center;
+    align-items:center;
+    background-color:#f5f5f5;
 }
-
-
-#circle {
-    width: 50vh; 
-    height: 50vh; 
-    border-radius: 50%; 
-    background-color: blue; 
-    color: white; 
-    font-family: 'Segoe UI', sans-serif; 
-    padding: 3vh; 
-    display: flex;
-    flex-direction: column; 
-    justify-content: center; 
-    align-items: center; 
-    text-align: center; 
-    overflow-y: auto; 
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2); 
+#circle{
+    width:50vh;
+    height:50vh;
+    boarder-radius:50%;
+    background-color:blue;
+    color:white;
+    font-family:sans-serif;
+    padding:3vh;
+    display:felx;
+    flex-direction:column;
+    justify-content:center;
+    aligh-items:center;
+    text-aligh:center;
+    overflow-y:auto;
 }
-
-
-#circle button {
-    margin-top: 2vh;
-    padding: 1vh 2vh;
-    border: none;
-    border-radius: 4px;
-    font-size: 1rem;
-    cursor: pointer;
-    background-color: white;
-    color: blue;
-    transition: all 0.3s;
+#circle button{
+    margin-top:2vh;
+    padding:1vh 2vh;
+    boarder:none;
+    boarder-radius:4px;
+    font-size:1rem;
+    cursor:pointer;
+    background-color:white;
+    color:blue;
+    transition:all 0.3s;
 }
-
-#circle button:hover {
-    background-color: #e0e0e0;
+circle botton:hover{
+    background-color:#e0e0e0;
 }
+    
+    
+
+    
+

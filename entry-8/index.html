@@ -170,7 +170,7 @@
         </div>
 
         <div class="brands-grid" id="brands-container">
-            <!-- Brands will be rendered dynamically -->
+         
         </div>
     </div>
 
@@ -185,7 +185,7 @@
     </div>
 
     <script>
-        // 50th Anniversary collaboration data (removed products)
+        
         const collaborations = [
             {
                 brand: "adidas",
@@ -229,13 +229,13 @@
             }
         ];
 
-        // Initialize page with all brands
+   
         document.addEventListener("DOMContentLoaded", () => {
             renderBrands(collaborations);
             console.log("Total collaborating brands:", collaborations.length);
         });
 
-        // Function to render brand cards (removed product count)
+       
         function renderBrands(brands) {
             const container = document.getElementById("brands-container");
             container.innerHTML = "";
@@ -260,7 +260,7 @@
             }
         }
 
-        // Function to filter brands
+ 
         function filterBrands() {
             const selectedBrand = document.getElementById("brand-filter").value;
             let filteredBrands;
@@ -280,7 +280,7 @@
             return filteredBrands;
         }
 
-        // Function to open modal (removed product list rendering)
+     
         function openModal(brand) {
             const modal = document.getElementById("modal");
             const brandName = brand.brand.charAt(0).toUpperCase() + brand.brand.slice(1);
@@ -292,12 +292,12 @@
             modal.style.display = "block";
         }
 
-        // Function to close modal
+      
         function closeModal() {
             document.getElementById("modal").style.display = "none";
         }
 
-        // Close modal when clicking outside
+     
         window.onclick = (event) => {
             const modal = document.getElementById("modal");
             if (event.target === modal) {

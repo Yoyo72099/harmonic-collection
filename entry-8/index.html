@@ -70,12 +70,12 @@
         .filter button:hover {
             background: #ff4a90;
         }
-        .products-grid {
+        .brands-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
         }
-        .product-card {
+        .brand-card {
             background: white;
             border-radius: 8px;
             overflow: hidden;
@@ -83,30 +83,22 @@
             cursor: pointer;
             transition: transform 0.3s, box-shadow 0.3s;
         }
-        .product-card:hover {
+        .brand-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 15px rgba(255, 107, 158, 0.2);
         }
-        .product-card img {
+        .brand-card img {
             width: 100%;
             height: 200px;
             object-fit: cover;
         }
-        .product-info {
+        .brand-info {
             padding: 1.2rem;
         }
-        .product-info h3 {
+        .brand-info h3 {
             color: #ff6b9e;
             margin: 0 0 0.5rem;
-        }
-        .product-info .brand {
-            display: inline-block;
-            background: #fff0f5;
-            padding: 0.3rem 0.6rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            color: #ff4a90;
-            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
         }
         #modal {
             display: none;
@@ -122,7 +114,7 @@
         #modal-content {
             background: white;
             width: 90%;
-            max-width: 600px;
+            max-width: 700px;
             margin: 5% auto;
             padding: 2rem;
             border-radius: 8px;
@@ -140,17 +132,17 @@
         #close-modal:hover {
             transform: scale(1.2);
         }
-        #modal-img {
+        #modal-brand-img {
             width: 100%;
-            height: 300px;
+            height: 250px;
             object-fit: cover;
             border-radius: 4px;
             margin-bottom: 1.5rem;
         }
-        .modal-category {
-            color: #666;
-            font-size: 0.9rem;
-            margin: 0.5rem 0 1.5rem;
+        .modal-brand-name {
+            color: #ff6b9e;
+            margin: 0 0 1rem;
+            font-size: 1.8rem;
         }
     </style>
 </head>
@@ -174,11 +166,11 @@
                 <option value="casio">Casio</option>
                 <option value="gcds">GCDS</option>
             </select>
-            <button onclick="filterProducts()">Show Results</button>
+            <button onclick="filterBrands()">Show Results</button>
         </div>
 
-        <div class="products-grid" id="products-container">
-            <!-- Products will be rendered dynamically -->
+        <div class="brands-grid" id="brands-container">
+            <!-- Brands will be rendered dynamically -->
         </div>
     </div>
 
@@ -186,151 +178,81 @@
     <div id="modal">
         <div id="modal-content">
             <span id="close-modal" onclick="closeModal()">&times;</span>
-            <img id="modal-img" src="" alt="Product image">
-            <h2 id="modal-title"></h2>
-            <p class="modal-category" id="modal-category"></p>
-            <p id="modal-desc"></p>
+            <img id="modal-brand-img" src="" alt="Brand collaboration image">
+            <h2 class="modal-brand-name" id="modal-brand-name"></h2>
+            <p id="modal-brand-desc"></p>
         </div>
     </div>
 
     <script>
-        // 50th Anniversary collaboration data
+        // 50th Anniversary collaboration data (removed products)
         const collaborations = [
             {
-                id: 1,
                 brand: "adidas",
-                name: "Superstar Collection",
-                category: "Footwear",
-                img: "https://source.unsplash.com/random/600x400/?adidas,superstar",
-                intro: "Classic shell-toe design with Hello Kitty motifs",
-                detail: "Part of Adidas' 4-series collaboration, the Superstar features pink accents, Hello Kitty's face on the tongue, and special 50th anniversary branding. Available in adult and kids' sizes with matching laces and dust bags."
+                brandImg: "https://source.unsplash.com/random/600x400/?adidas,hellokitty",
+                brandDesc: "Adidas teams up with Hello Kitty for exclusive footwear series, available in both adult and kids' sizes."
             },
             {
-                id: 2,
-                brand: "adidas",
-                name: "Platform Samba",
-                category: "Footwear",
-                img: "https://source.unsplash.com/random/600x400/?adidas,samba",
-                intro: "Elevated Samba with cute Hello Kitty details",
-                detail: "The thick-soled Samba reimagines the retro style with Hello Kitty's signature bow on the heel and contrasting pink stitching. Includes both adult and children's sizes, perfect for family matching."
-            },
-            {
-                id: 3,
-                brand: "adidas",
-                name: "Chef Mules",
-                category: "Footwear",
-                img: "https://source.unsplash.com/random/600x400/?adidas,mules",
-                intro: "Kitchen-inspired mules with Hello Kitty chef design",
-                detail: "Unique穆勒鞋 (mules) featuring Hello Kitty in a chef outfit, with food-themed graphics. Comfortable for everyday wear, available in adult sizes only."
-            },
-            {
-                id: 4,
-                brand: "adidas",
-                name: "Pool Slides",
-                category: "Footwear",
-                img: "https://source.unsplash.com/random/600x400/?adidas,slides",
-                intro: "Water-friendly slides with Hello Kitty prints",
-                detail: "Lightweight slides with Hello Kitty's face and bow patterns. Quick-dry material makes them perfect for pools or beaches, available in both adult and kids' sizes."
-            },
-            {
-                id: 5,
                 brand: "crocs",
-                name: "Hello Kitty Clogs",
-                category: "Footwear",
-                img: "https://source.unsplash.com/random/600x400/?crocs,hellokitty",
-                intro: "Iconic Crocs with Hello Kitty Jibbitz charms",
-                detail: "Classic Crocs design with exclusive Hello Kitty-themed charms (Jibbitz) including bows, stars, and Kitty's face. Ventilated for comfort, available in multiple colors and sizes for all ages."
+                brandImg: "https://source.unsplash.com/random/600x400/?crocs,hellokitty",
+                brandDesc: "Iconic Crocs clogs get a cute Hello Kitty makeover with exclusive Jibbitz charms."
             },
             {
-                id: 6,
                 brand: "starbucks",
-                name: "Anniversary Tumbler Set",
-                category: "Drinkware",
-                img: "https://source.unsplash.com/random/600x400/?starbucks,tumbler",
-                intro: "Limited edition cups with 50th anniversary designs",
-                detail: "Starbucks' collaboration includes a stainless steel tumbler and ceramic mug, both featuring Hello Kitty in retro 50s-inspired outfits. The tumbler has a leak-proof lid and keeps drinks hot/cold for hours."
+                brandImg: "https://source.unsplash.com/random/600x400/?starbucks,tumbler",
+                brandDesc: "Limited edition drinkware celebrating Hello Kitty's 50th anniversary with retro-inspired designs."
             },
             {
-                id: 7,
                 brand: "kitsch",
-                name: "Hair Accessories Set",
-                category: "Beauty",
-                img: "https://source.unsplash.com/random/600x400/?hair,accessories",
-                intro: "Scrunchies, clips and headbands with Hello Kitty motifs",
-                detail: "Kitsch's popular hair accessories get a Hello Kitty makeover. Includes velvet scrunchies, bow clips, and a headband—all featuring Kitty's face and signature pink bows. Made with gentle materials suitable for all hair types."
+                brandImg: "https://source.unsplash.com/random/600x400/?hair,accessories,hellokitty",
+                brandDesc: "Popular Kitsch accessories expand to home goods with Hello Kitty's iconic style."
             },
             {
-                id: 8,
-                brand: "kitsch",
-                name: "Bedding Collection",
-                category: "Home",
-                img: "https://source.unsplash.com/random/600x400/?bedding,hellokitty",
-                intro: "Pillowcases and sheets with cute Hello Kitty patterns",
-                detail: "Soft cotton bedding set featuring Hello Kitty and friends in a playful 50th anniversary design. Includes fitted sheet, flat sheet, and two pillowcases, available in twin, queen, and king sizes."
-            },
-            {
-                id: 9,
                 brand: "mcdonalds",
-                name: "Mystery Box Set",
-                category: "Toys",
-                img: "https://source.unsplash.com/random/600x400/?mcdonalds,toys",
-                intro: "Happy Meal exclusive Hello Kitty盲盒 (blind boxes)",
-                detail: "McDonald's limited edition Happy Meal toys include 8 different Hello Kitty figures, each celebrating a decade of her history (1970s-2020s). Packaged as盲盒 (blind boxes) for a fun surprise element—collect all 8!"
+                brandImg: "https://source.unsplash.com/random/600x400/?mcdonalds,toys",
+                brandDesc: "Happy Meal exclusive blind boxes featuring Hello Kitty's 50-year evolution."
             },
             {
-                id: 10,
                 brand: "uniqlo",
-                name: "UT Graphic Tees",
-                category: "Apparel",
-                img: "https://source.unsplash.com/random/600x400/?uniqlo,tshirt",
-                intro: "Comfortable cotton tees with retro Hello Kitty prints",
-                detail: "Uniqlo's UT collection features 10 different designs showcasing Hello Kitty's evolution over 50 years. Made with ultra-soft cotton, available in men's, women's, and children's sizes for family matching."
+                brandImg: "https://source.unsplash.com/random/600x400/?uniqlo,tshirt,hellokitty",
+                brandDesc: "Comfortable UT graphic tees with retro Hello Kitty designs for the whole family."
             },
             {
-                id: 11,
                 brand: "casio",
-                name: "Baby-G Watch",
-                category: "Accessories",
-                img: "https://source.unsplash.com/random/600x400/?casio,babyg",
-                intro: "Durable digital watch with Hello Kitty accents",
-                detail: "Casio's Baby-G series gets a cute makeover with a pink and white color scheme, Hello Kitty face on the dial, and special engraving on the back. Water-resistant up to 100m, with stopwatch and alarm functions."
+                brandImg: "https://source.unsplash.com/random/600x400/?casio,babyg,hellokitty",
+                brandDesc: "Durable Baby-G watch with cute Hello Kitty accents, perfect for everyday wear."
             },
             {
-                id: 12,
                 brand: "gcds",
-                name: "Streetwear Collection",
-                category: "Apparel",
-                img: "https://source.unsplash.com/random/600x400/?gcds,clothing",
-                intro: "Edgy streetwear with Hello Kitty's iconic image",
-                detail: "GCDS brings their signature bold style to Hello Kitty's 50th anniversary, with oversized hoodies, graphic tees, and track pants featuring distorted Hello Kitty prints and neon accents. Perfect for fashion-forward fans."
+                brandImg: "https://source.unsplash.com/random/600x400/?gcds,clothing,hellokitty",
+                brandDesc: "Edgy streetwear collection blending GCDS's bold style with Hello Kitty's iconic image."
             }
         ];
 
-        // Initialize page with all products
+        // Initialize page with all brands
         document.addEventListener("DOMContentLoaded", () => {
-            renderProducts(collaborations);
-            // Demonstrate console.log for debugging (vs return)
-            console.log("Total collaboration items:", collaborations.length);
+            renderBrands(collaborations);
+            console.log("Total collaborating brands:", collaborations.length);
         });
 
-        // Function to render products (uses loops)
-        function renderProducts(products) {
-            const container = document.getElementById("products-container");
+        // Function to render brand cards (removed product count)
+        function renderBrands(brands) {
+            const container = document.getElementById("brands-container");
             container.innerHTML = "";
 
-            // Loop through products array to create cards
-            for (let i = 0; i < products.length; i++) {
-                const product = products[i];
+            for (let i = 0; i < brands.length; i++) {
+                const brand = brands[i];
                 const card = document.createElement("div");
-                card.className = "product-card";
-                card.onclick = () => openModal(product);
+                card.className = "brand-card";
+                card.onclick = () => openModal(brand);
+
+                const brandName = brand.brand.charAt(0).toUpperCase() + brand.brand.slice(1);
 
                 card.innerHTML = `
-                    <img src="${product.img}" alt="${product.name}">
-                    <div class="product-info">
-                        <span class="brand">${product.brand.charAt(0).toUpperCase() + product.brand.slice(1)}</span>
-                        <h3>${product.name}</h3>
-                        <p>${product.intro}</p>
+                    <img src="${brand.brandImg}" alt="${brandName} x Hello Kitty">
+                    <div class="brand-info">
+                        <h3>${brandName}</h3>
+                        <p>${brand.brandDesc}</p>
                     </div>
                 `;
 
@@ -338,36 +260,35 @@
             }
         }
 
-        // Function to filter products (uses conditionals)
-        function filterProducts() {
+        // Function to filter brands
+        function filterBrands() {
             const selectedBrand = document.getElementById("brand-filter").value;
-            let filteredProducts;
+            let filteredBrands;
 
-            // Conditional logic to filter by brand
             if (selectedBrand === "all") {
-                filteredProducts = collaborations;
+                filteredBrands = collaborations;
             } else {
-                filteredProducts = [];
-                // Loop through products to find matches
-                for (let product of collaborations) {
-                    if (product.brand === selectedBrand) {
-                        filteredProducts.push(product);
+                filteredBrands = [];
+                for (let brand of collaborations) {
+                    if (brand.brand === selectedBrand) {
+                        filteredBrands.push(brand);
                     }
                 }
             }
 
-            // Return value is used to render results (vs console.log)
-            renderProducts(filteredProducts);
-            return filteredProducts;
+            renderBrands(filteredBrands);
+            return filteredBrands;
         }
 
-        // Function to open modal
-        function openModal(product) {
+        // Function to open modal (removed product list rendering)
+        function openModal(brand) {
             const modal = document.getElementById("modal");
-            document.getElementById("modal-img").src = product.img;
-            document.getElementById("modal-title").textContent = product.name;
-            document.getElementById("modal-category").textContent = `Category: ${product.category} | Brand: ${product.brand.charAt(0).toUpperCase() + product.brand.slice(1)}`;
-            document.getElementById("modal-desc").textContent = product.detail;
+            const brandName = brand.brand.charAt(0).toUpperCase() + brand.brand.slice(1);
+            
+            document.getElementById("modal-brand-img").src = brand.brandImg;
+            document.getElementById("modal-brand-name").textContent = `${brandName} x Hello Kitty`;
+            document.getElementById("modal-brand-desc").textContent = brand.brandDesc;
+
             modal.style.display = "block";
         }
 
@@ -386,3 +307,4 @@
     </script>
 </body>
 </html>
+         

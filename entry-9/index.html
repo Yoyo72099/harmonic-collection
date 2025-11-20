@@ -1,1 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kitty Shaped Delicacies</title>
+    <!-- 引入 lozad.js 库 -->
+    <script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+    <style>
+        /* --- 全局样式 --- */
+        body {
+            font-family: 'Arial Rounded MT Bold', 'Helvetica Rounded', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #FFF9E8; /* 温暖的米黄色背景 */
+            color: #5D4037; /* 深棕色文字 */
+            padding-bottom: 4rem;
+        }
 
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        /* --- 头部样式 --- */
+        header {
+            background-color: #FF9EBB; /* 淡粉色 */
+            color: white;
+            text-align: center;
+            padding: 2.5rem 1rem;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* --- 主要内容区 (非对称网格) --- */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr; /* 移动端单列 */
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        /* --- 懒加载提示区域 --- */
+        .lazyload-hint {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            color: #FF6B9E;
+        }
+
+        /* --- 美食卡片网格 --- */
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .food-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .food-<|card|>:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+
+        .food-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 3px solid #FFD6E0;
+            /* 懒加载图片默认样式 */
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .food-card img.loaded {
+            opacity: 1;
+        }
+
+        .food-info {
+            padding: 1.2rem;
+        }
+
+        .food-info h3 {
+            color: #FF6B9E;
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .food-info p {
+            color: #795548;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* --- 响应式调整 --- */
+        @media (min-width: 992px) {
+            .main-content {
+                grid-template-columns: 1fr 3fr; /* 桌面端：1列提示区 + 3列卡片区 */
+            }
+            .lazyload-hint {
+                grid-column: 1 / 2;
+                align-self: start;
+            }
+            .food-grid {
+                grid-column: 2 / 3;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Kitty Shaped Delicacies</h1>
+        <p>Indulge in the cutest treats shaped like Hello Kitty!</p>
+    </header>
+
+    <div class="container">
+        <div class="main-content">
+            <!-- 懒加载提示区域 -->
+            <div class="lazyload-hint">
+                <h2>✨ Lazy Loading</h2>
+                <p>Scroll down to see Kitty treats load automatically!</p>
+            </div>
+
+            <!-- 美食卡片区域 -->
+            <div class="food-grid" id="foodContainer">
+                <!-- 美食卡片将通过 JavaScript 动态生成 -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- 1. 数据 ---
+        const kittyFoods = [
+            {
+                id: 1,
+                name: "Kitty Cookie",
+                image: "https://source.unsplash.com/random/400x300/?cookie,cat",
+                description: "Buttery shortbread cookies cut into Hello Kitty's face, decorated with royal icing bows and eyes.",
+            },
+            {
+                id: 2,
+                name: "Kitty Tangyuan",
+                image: "https://source.unsplash.com/random/400x300/?glutinous,rice,ball",
+                description: "Soft and chewy glutinous rice balls filled with red bean paste, shaped like Kitty's head.",
+            },
+            {
+                id: 3,
+                name: "Kitty Cake",
+                image: "https://source.unsplash.com/random/400x300/?cake,hello,kitty",
+                description: "A fluffy sponge cake decorated with pink buttercream, featuring Kitty's iconic bow and whiskers.",
+            },
+            {
+                id: 4,
+                name: "Kitty Toast",
+                image: "https://source.unsplash.com/random/400x300/?toast,cat,face",
+                description: "Golden brown toast with Kitty's face cleverly made using peanut butter and banana slices.",
+            },
+            {
+                id: 5,
+                name: "Kitty Fish Cake",
+                image: "https://source.unsplash.com/random/400x300/?fish,cake",
+                description: "Savory fish cake shaped like Hello Kitty, a popular street food in some Asian countries.",
+            },
+            {
+                id: 6,
+                name: "Kitty Pizza",
+                image: "https://source.unsplash.com/random/400x300/?pizza,mini",
+                description: "A mini pizza with Kitty's face formed by melted cheese, pepperoni, and olives.",
+            },
+            {
+                id: 7,
+                name: "Kitty Shaomai",
+                image: "https://source.unsplash.com/random/400x300/?dumpling,shaomai",
+                description: "Cute dumplings (shaomai) shaped to look like Hello Kitty's head, filled with pork and shrimp.",
+            },
+            {
+                id: 8,
+                name: "Kitty Onigiri",
+                image: "https://source.unsplash.com/random/400x300/?onigiri,rice,ball",
+                description: "Japanese rice balls (onigiri) wrapped in seaweed, decorated to resemble Hello Kitty.",
+            }
+        ];
+
+        // --- 2. 页面加载完成后执行 ---
+        document.addEventListener('DOMContentLoaded', function() {
+            renderFoodCards();
+            initLazyLoad();
+        });
+
+        // --- 3. 渲染美食卡片 ---
+        function renderFoodCards() {
+            const container = document.getElementById('foodContainer');
+            container.innerHTML = '';
+
+            kittyFoods.forEach(food => {
+                const card = document.createElement('div');
+                card.className = 'food-card';
+                
+                // 懒加载图片配置：使用 data-src 存储真实图片地址
+                card.innerHTML = `
+                    <img class="lozad" data-src="${food.image}" alt="${food.name}" width="400" height="300">
+                    <div class="food-info">
+                        <h3>${food.name}</h3>
+                        <p>${food.description}</p>
+                    </div>
+                `;
+
+                container.appendChild(card);
+            });
+        }
+
+        // --- 4. 初始化懒加载 ---
+        function initLazyLoad() {
+            // 配置 lozad.js
+            const observer = lozad('.lozad', {
+                rootMargin: '100px 0px', // 提前 100px 开始加载
+                threshold: 0.1, // 图片可见比例达到 10% 时加载
+                loaded: function(el) {
+                    // 图片加载完成后添加 'loaded' 类以显示淡入效果
+                    el.classList.add('loaded');
+                }
+            });
+
+            // 启动观察
+            observer.observe();
+        }
+    </script>
+</body>
+</html>

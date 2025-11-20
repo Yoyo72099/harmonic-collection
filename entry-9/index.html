@@ -127,12 +127,13 @@
     </div>
 
     <script>
+       
         const kittyFoods = [
             {
                 id: 1,
                 name: "Kitty Cookie",
                 image: "https://github.com/Yoyo72099/harmonic-collection/blob/main/截屏2025-11-19%20下午7.27.55.png?raw=true",
-                description: "Hello Kitty shaped cookies in two flavors, decorated with pink sugar icing bows and flowers.",
+                description: "Buttery shortbread cookies cut into Hello Kitty's face, decorated with royal icing bows and eyes.",
             },
             {
                 id: 2,
@@ -144,19 +145,19 @@
                 id: 3,
                 name: "Kitty Cake",
                 image: "https://github.com/Yoyo72099/harmonic-collection/blob/main/截屏2025-11-19%20下午7.30.19.png?raw=true",
-                description: "Hello Kitty shaped brownie birthday cake, with "HAPPY BIRTHDAY" in pink and a lit candle.",
+                description: "A fluffy sponge cake decorated with pink buttercream, featuring Kitty's iconic bow and whiskers.",
             },
             {
                 id: 4,
                 name: "Kitty Toast",
                 image: "https://github.com/Yoyo72099/harmonic-collection/blob/main/截屏2025-11-19%20下午7.40.46.png?raw=true",
-                description: "Toast decorated with Hello Kitty figures in black and pink outfits, made with creamy frosting.",
+                description: "Golden brown toast with Kitty's face cleverly made using peanut butter and banana slices.",
             },
             {
                 id: 5,
                 name: "Kitty Fish Cake",
                 image: "https://github.com/Yoyo72099/harmonic-collection/blob/main/截屏2025-11-19%20下午7.42.42.png?raw=true",
-                description: "Hello Kitty shaped fish cakes in a spicy Korean ramen pot, with cute facial details and colorful layers.",
+                description: "Savory fish cake shaped like Hello Kitty, a popular street food in some Asian countries.",
             },
             {
                 id: 6,
@@ -172,18 +173,19 @@
             },
             {
                 id: 8,
-                name: "Kitty Rice",
+                name: "Kitty Onigiri",
                 image: "https://github.com/Yoyo72099/harmonic-collection/blob/main/截屏2025-11-19%20下午7.42.51.png?raw=true",
-                description: "Hello Kitty shaped rice ball with seaweed for eyes and whiskers, and a sausage bow, cute and appetizing.",
+                description: "Japanese rice balls (onigiri) wrapped in seaweed, decorated to resemble Hello Kitty.",
             }
         ];
 
+        // --- 2. 页面加载完成后执行 ---
         document.addEventListener('DOMContentLoaded', function() {
             renderFoodCards();
             initTypedEffect();
         });
 
-        
+        // --- 3. 渲染美食卡片 ---
         function renderFoodCards() {
             const container = document.getElementById('foodContainer');
             container.innerHTML = '';
@@ -204,28 +206,28 @@
             });
         }
 
-        
+        // --- 4. 使用 Typed.js 初始化打字机效果 ---
         function initTypedEffect() {
-           
+            // 获取要显示打字效果的 DOM 元素
             const typedOutput = document.getElementById('typed-output');
             
-            
+            // 配置打字机效果的参数
             const options = {
                 strings: [
                     "Welcome to Kitty's Kitchen!",
                     "Today we have 8 delicious treats...",
                     "Kitty Cookie, Kitty Cake, and more!",
                     "Scroll down to see them all!"
-                ], 
-                typeSpeed: 60, 
-                backSpeed: 30, 
-                backDelay: 1500, 
-                loop: true, 
-                showCursor: true, 
-                cursorChar: '|' 
+                ], // 要显示的文本数组，会循环播放
+                typeSpeed: 60, // 打字速度，单位是毫秒
+                backSpeed: 30, // 删除速度，单位是毫秒
+                backDelay: 1500, // 打完一行后，等待多久开始删除
+                loop: true, // 是否循环播放
+                showCursor: true, // 是否显示光标
+                cursorChar: '|' // 光标的字符
             };
 
-            
+            // 创建 Typed 实例并启动效果
             new Typed(typedOutput, options);
         }
     </script>

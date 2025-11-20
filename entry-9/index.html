@@ -219,15 +219,20 @@
                     "Kitty Cookie, Kitty Cake, and more!",
                     "Scroll down to see them all!"
                
-                typeSpeed: 60, 
-                backSpeed: 30,
-                backDelay: 1500,
-                loop: true, 
-                showCursor: true, 
-                cursorChar: '|' 
+                const options = {
+                strings: [
+                    "Welcome to Kitty's Kitchen!",
+                    "Today we have 8 delicious treats...",
+                    "Kitty Cookie, Kitty Cake, and more!",
+                    "Scroll down to see them all!"
+                ], // 要显示的文本数组，会循环播放
+                typeSpeed: 60, // 打字速度，单位是毫秒
+                backSpeed: 30, // 删除速度，单位是毫秒
+                backDelay: 1500, // 打完一行后，等待多久开始删除
+                loop: true, // 是否循环播放
+                showCursor: true, // 是否显示光标
+                cursorChar: '|' // 光标的字符
             };
-
-            
             new Typed(typedOutput, options);
         }
     </script>

@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kitty Shaped Delicacies</title>
- 
+    <!-- 引入 Typed.js 库 -->
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
     <style>
-  
+        /* --- 全局样式 --- */
         body {
             font-family: 'Arial Rounded MT Bold', 'Helvetica Rounded', Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #FFF9E8; 
-            color: #5D4037;
+            background-color: #FFF9E8; /* 温暖的米黄色背景 */
+            color: #5D4037; /* 深棕色文字 */
             padding-bottom: 4rem;
         }
 
@@ -23,9 +23,9 @@
             padding: 0 1rem;
         }
 
-      
+        /* --- 头部样式 --- */
         header {
-            background-color: #FF9EBB; 
+            background-color: #FF9EBB; /* 淡粉色 */
             color: white;
             text-align: center;
             padding: 2.5rem 1rem;
@@ -44,7 +44,7 @@
             opacity: 0.9;
         }
 
-        
+        /* --- 打字机效果区域 --- */
         .typed-container {
             text-align: center;
             margin: 2rem 0;
@@ -60,7 +60,7 @@
             font-weight: bold;
         }
 
-       
+        /* --- 美食卡片网格 --- */
         .food-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -115,77 +115,78 @@
     </header>
 
     <div class="container">
-       
+        <!-- 打字机效果区域 -->
         <div class="typed-container">
             <span class="typed-text" id="typed-output"></span>
             <span class="typed-cursor"></span>
         </div>
 
+        <!-- 美食卡片区域 -->
         <div class="food-grid" id="foodContainer">
-           
+            <!-- 美食卡片将通过 JavaScript 动态生成 -->
         </div>
     </div>
 
     <script>
-       
+        // --- 1. 数据 ---
         const kittyFoods = [
             {
                 id: 1,
                 name: "Kitty Cookie",
-                image: "https://github.com/Yoyo72099/harmonic-collection/blob/main/截屏2025-11-19%20下午7.27.55.png?raw=true",
+                image: "https://source.unsplash.com/random/400x300/?cookie,cat",
                 description: "Buttery shortbread cookies cut into Hello Kitty's face, decorated with royal icing bows and eyes.",
             },
             {
                 id: 2,
                 name: "Kitty Tangyuan",
-                image: "https://github.com/Yoyo72099/harmonic-collection/blob/main/截屏2025-11-19%20下午7.37.50.png?raw=true",
+                image: "https://source.unsplash.com/random/400x300/?glutinous,rice,ball",
                 description: "Soft and chewy glutinous rice balls filled with red bean paste, shaped like Kitty's head.",
             },
             {
                 id: 3,
                 name: "Kitty Cake",
-                image: "https://github.com/Yoyo72099/harmonic-collection/blob/main/截屏2025-11-19%20下午7.30.19.png?raw=true",
+                image: "https://source.unsplash.com/random/400x300/?cake,hello,kitty",
                 description: "A fluffy sponge cake decorated with pink buttercream, featuring Kitty's iconic bow and whiskers.",
             },
             {
                 id: 4,
                 name: "Kitty Toast",
-                image: "https://github.com/Yoyo72099/harmonic-collection/blob/main/截屏2025-11-19%20下午7.40.46.png?raw=true",
+                image: "https://source.unsplash.com/random/400x300/?toast,cat,face",
                 description: "Golden brown toast with Kitty's face cleverly made using peanut butter and banana slices.",
             },
             {
                 id: 5,
                 name: "Kitty Fish Cake",
-                image: "https://github.com/Yoyo72099/harmonic-collection/blob/main/截屏2025-11-19%20下午7.42.42.png?raw=true",
+                image: "https://source.unsplash.com/random/400x300/?fish,cake",
                 description: "Savory fish cake shaped like Hello Kitty, a popular street food in some Asian countries.",
             },
             {
                 id: 6,
                 name: "Kitty Pizza",
-                image: "https://github.com/Yoyo72099/harmonic-collection/blob/main/截屏2025-11-19%20下午7.38.03.png?raw=true",
+                image: "https://source.unsplash.com/random/400x300/?pizza,mini",
                 description: "A mini pizza with Kitty's face formed by melted cheese, pepperoni, and olives.",
             },
             {
                 id: 7,
                 name: "Kitty Shaomai",
-                image: "https://github.com/Yoyo72099/harmonic-collection/blob/main/截屏2025-11-19%20下午7.41.00.png?raw=true",
+                image: "https://source.unsplash.com/random/400x300/?dumpling,shaomai",
                 description: "Cute dumplings (shaomai) shaped to look like Hello Kitty's head, filled with pork and shrimp.",
             },
             {
                 id: 8,
                 name: "Kitty Onigiri",
-                image: "https://github.com/Yoyo72099/harmonic-collection/blob/main/截屏2025-11-19%20下午7.42.51.png?raw=true",
+                image: "https://source.unsplash.com/random/400x300/?onigiri,rice,ball",
                 description: "Japanese rice balls (onigiri) wrapped in seaweed, decorated to resemble Hello Kitty.",
             }
         ];
 
-       
+        // --- 2. 页面加载完成后执行 ---
         document.addEventListener('DOMContentLoaded', function() {
             renderFoodCards();
             initTypedEffect();
         });
 
-       
+        // --- 3. 渲染美食卡片 ---
         function renderFoodCards() {
             const container = document.getElementById('foodContainer');
             container.innerHTML = '';
@@ -206,20 +207,13 @@
             });
         }
 
-       
+        // --- 4. 使用 Typed.js 初始化打字机效果 ---
         function initTypedEffect() {
-            
+            // 获取要显示打字效果的 DOM 元素
             const typedOutput = document.getElementById('typed-output');
             
-            
+            // 配置打字机效果的参数
             const options = {
-                strings: [
-                    "Welcome to Kitty's Kitchen!",
-                    "Today we have 8 delicious treats...",
-                    "Kitty Cookie, Kitty Cake, and more!",
-                    "Scroll down to see them all!"
-               
-                const options = {
                 strings: [
                     "Welcome to Kitty's Kitchen!",
                     "Today we have 8 delicious treats...",
@@ -233,6 +227,8 @@
                 showCursor: true, // 是否显示光标
                 cursorChar: '|' // 光标的字符
             };
+
+            // 创建 Typed 实例并启动效果
             new Typed(typedOutput, options);
         }
     </script>

@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kitty Shaped Delicacies</title>
-    
+ 
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
     <style>
- 
+  
         body {
             font-family: 'Arial Rounded MT Bold', 'Helvetica Rounded', Arial, sans-serif;
             margin: 0;
             padding: 0;
             background-color: #FFF9E8; 
-            color: #5D4037; 
+            color: #5D4037;
             padding-bottom: 4rem;
         }
 
@@ -23,9 +23,9 @@
             padding: 0 1rem;
         }
 
-        /* --- 头部样式 --- */
+      
         header {
-            background-color: #FF9EBB; /* 淡粉色 */
+            background-color: #FF9EBB; 
             color: white;
             text-align: center;
             padding: 2.5rem 1rem;
@@ -44,7 +44,7 @@
             opacity: 0.9;
         }
 
-        /* --- 打字机效果区域 --- */
+        
         .typed-container {
             text-align: center;
             margin: 2rem 0;
@@ -60,7 +60,7 @@
             font-weight: bold;
         }
 
-        /* --- 美食卡片网格 --- */
+       
         .food-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -115,25 +115,25 @@
     </header>
 
     <div class="container">
-        <!-- 打字机效果区域 -->
+       
         <div class="typed-container">
             <span class="typed-text" id="typed-output"></span>
             <span class="typed-cursor"></span>
         </div>
 
-        <!-- 美食卡片区域 -->
         <div class="food-grid" id="foodContainer">
-            <!-- 美食卡片将通过 JavaScript 动态生成 -->
+           
         </div>
     </div>
 
     <script>
+       
         const kittyFoods = [
             {
                 id: 1,
                 name: "Kitty Cookie",
                 image: "https://github.com/Yoyo72099/harmonic-collection/blob/main/截屏2025-11-19%20下午7.27.55.png?raw=true",
-                description: "Hello Kitty shaped cookies in two flavors, decorated with pink sugar icing bows and flowers.",
+                description: "Buttery shortbread cookies cut into Hello Kitty's face, decorated with royal icing bows and eyes.",
             },
             {
                 id: 2,
@@ -145,19 +145,19 @@
                 id: 3,
                 name: "Kitty Cake",
                 image: "https://github.com/Yoyo72099/harmonic-collection/blob/main/截屏2025-11-19%20下午7.30.19.png?raw=true",
-                description: "Hello Kitty shaped brownie birthday cake, with "HAPPY BIRTHDAY" in pink and a lit candle.",
+                description: "A fluffy sponge cake decorated with pink buttercream, featuring Kitty's iconic bow and whiskers.",
             },
             {
                 id: 4,
                 name: "Kitty Toast",
                 image: "https://github.com/Yoyo72099/harmonic-collection/blob/main/截屏2025-11-19%20下午7.40.46.png?raw=true",
-                description: "Toast decorated with Hello Kitty figures in black and pink outfits, made with creamy frosting.",
+                description: "Golden brown toast with Kitty's face cleverly made using peanut butter and banana slices.",
             },
             {
                 id: 5,
                 name: "Kitty Fish Cake",
                 image: "https://github.com/Yoyo72099/harmonic-collection/blob/main/截屏2025-11-19%20下午7.42.42.png?raw=true",
-                description: "Hello Kitty shaped fish cakes in a spicy Korean ramen pot, with cute facial details and colorful layers.",
+                description: "Savory fish cake shaped like Hello Kitty, a popular street food in some Asian countries.",
             },
             {
                 id: 6,
@@ -173,19 +173,19 @@
             },
             {
                 id: 8,
-                name: "Kitty Rice",
+                name: "Kitty Onigiri",
                 image: "https://github.com/Yoyo72099/harmonic-collection/blob/main/截屏2025-11-19%20下午7.42.51.png?raw=true",
-                description: "Hello Kitty shaped rice ball with seaweed for eyes and whiskers, and a sausage bow, cute and appetizing.",
+                description: "Japanese rice balls (onigiri) wrapped in seaweed, decorated to resemble Hello Kitty.",
             }
         ];
 
-        
+        // --- 2. 页面加载完成后执行 ---
         document.addEventListener('DOMContentLoaded', function() {
             renderFoodCards();
             initTypedEffect();
         });
 
-        
+        // --- 3. 渲染美食卡片 ---
         function renderFoodCards() {
             const container = document.getElementById('foodContainer');
             container.innerHTML = '';

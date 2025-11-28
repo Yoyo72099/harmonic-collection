@@ -1,12 +1,324 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title></title>
-  <link rel="stylesheet" href="style.css">
+  <title>Hello Kitty World</title>
+  
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  
+
+  <style>
+    /* 全局背景样式 */
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #FFF5F7;
+      background-image: 
+        radial-gradient(#FF9EB1 0.5px, transparent 0.5px),
+        radial-gradient(#FF9EB1 0.5px, #FFF5F7 0.5px);
+      background-size: 20px 20px;
+      background-position: 0 0, 10px 10px;
+      font-family: 'Comic Sans MS', 'Bubblegum Sans', cursive;
+      color: #5D4037;
+    }
+
+    /* 头部样式 */
+    header {
+      padding: 2rem 1rem;
+      text-align: center;
+      background: linear-gradient(to right, #FFE6EC, #FF9EB1);
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .kitty-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: 4px solid white;
+      box-shadow: 0 3px 10px rgba(255, 105, 180, 0.3);
+      object-fit: cover;
+    }
+
+    .header-bow {
+      position: absolute;
+      top: 10px;
+      right: 20%;
+      width: 30px;
+      height: 30px;
+      background-color: #E6005C;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 16px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: white;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+      margin: 1rem 0 0.5rem;
+    }
+
+    header p {
+      color: white;
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    /* 主内容区网格布局 */
+    main {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    .sites-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .sites-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .sites-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    /* 板块卡片样式 */
+    .site-card {
+      background-color: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(255, 105, 180, 0.1);
+      transition: all 0.3s ease;
+      opacity: 0;
+      animation: fadeIn 0.5s ease forwards;
+      position: relative;
+      text-decoration: none;
+    }
+
+    /* 每个卡片延迟动画 */
+    .site-card:nth-child(1) { animation-delay: 0.1s; }
+    .site-card:nth-child(2) { animation-delay: 0.2s; }
+    .site-card:nth-child(3) { animation-delay: 0.3s; }
+    .site-card:nth-child(4) { animation-delay: 0.4s; }
+    .site-card:nth-child(5) { animation-delay: 0.5s; }
+    .site-card:nth-child(6) { animation-delay: 0.6s; }
+    .site-card:nth-child(7) { animation-delay: 0.7s; }
+    .site-card:nth-child(8) { animation-delay: 0.8s; }
+    .site-card:nth-child(9) { animation-delay: 0.9s; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .site-card:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 8px 20px rgba(255, 105, 180, 0.2);
+    }
+
+    .card-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .site-card:hover .card-img {
+      transform: scale(1.1);
+    }
+
+    .card-info {
+      padding: 1.2rem;
+    }
+
+    .card-info h2 {
+      color: #FF69B4;
+      font-size: 1.2rem;
+      margin: 0 0 0.5rem;
+      transition: color 0.3s ease;
+    }
+
+    .site-card:hover .card-info h2 {
+      color: #E6005C;
+    }
+
+    .card-info p {
+      color: #795548;
+      font-size: 0.9rem;
+      margin: 0 0 0.8rem;
+    }
+
+    .card-tag {
+      display: inline-block;
+      background-color: #FFE6EC;
+      color: #FF69B4;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+    }
+
+    /* 蝴蝶结装饰 */
+    .card-bow::after {
+      content: '';
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      background-color: #E6005C;
+      border-radius: 50%;
+      top: -6px;
+      right: 12px;
+      z-index: 1;
+    }
+
+    .card-bow::before {
+      content: '';
+      position: absolute;
+      width: 22px;
+      height: 10px;
+      background-color: #E6005C;
+      border-radius: 5px;
+      top: -3px;
+      right: 8px;
+      transform: rotate(45deg);
+      z-index: 0;
+    }
+
+    /* 页脚样式 */
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      margin-top: 3rem;
+      background-color: #FF9EB1;
+      color: white;
+      font-size: 0.9rem;
+    }
+  </style>
 </head>
 <body>
-  <div>It works!</div>
+  <!-- 页面头部 -->
+  <header>
+    <div class="header-container">
+      <img src="https://source.unsplash.com/random/100x100/?hellokitty" alt="Hello Kitty" class="kitty-avatar">
+      <div class="header-bow">❤️</div>
+      <h1>Hello Kitty World</h1>
+      <p>Explore All Cute & Wonderful Things About Kitty</p>
+    </div>
+  </header>
+
+  
+  <main>
+    <div class="sites-grid">
+      <!-- 1. Kitty的基本介绍 -->
+      <a href="https://yoyo72099.github.io/harmonic-collection/entry-1/" class="site-card card-bow">
+        <img src="https://source.unsplash.com/random/400x300/?hellokitty,character" alt="Kitty的基本介绍" class="card-img">
+        <div class="card-info">
+          <h2>Kitty的基本介绍</h2>
+          <p>了解Hello Kitty的历史、性格和喜好</p>
+          <span class="card-tag"><i class="fa fa-info-circle"></i> 基础信息</span>
+        </div>
+      </a>
+
+      <!-- 2. Hello Kitty's Stylish Outfits -->
+      <a href="kitty-outfits.html" class="site-card card-bow">
+        <img src="https://source.unsplash.com/random/400x300/?hellokitty,clothes" alt="Hello Kitty's Stylish Outfits" class="card-img">
+        <div class="card-info">
+          <h2>Hello Kitty's Stylish Outfits</h2>
+          <p>探索Kitty的标志性穿搭与时尚风格</p>
+          <span class="card-tag"><i class="fa fa-shopping-bag"></i> 时尚穿搭</span>
+        </div>
+      </a>
+
+      <!-- 3. The Creator of Hello Kitty: Yuko Shimizu -->
+      <a href="kitty-creator.html" class="site-card card-bow">
+        <img src="https://source.unsplash.com/random/400x300/?japanese,designer" alt="Yuko Shimizu" class="card-img">
+        <div class="card-info">
+          <h2>The Creator: Yuko Shimizu</h2>
+          <p>认识Hello Kitty的天才设计师清水侑子</p>
+          <span class="card-tag"><i class="fa fa-user"></i> 创作者故事</span>
+        </div>
+      </a>
+
+      <!-- 4. Me and Kitty -->
+      <a href="me-and-kitty.html" class="site-card card-bow">
+        <img src="https://source.unsplash.com/random/400x300/?person,hellokitty" alt="Me and Kitty" class="card-img">
+        <div class="card-info">
+          <h2>Me and Kitty</h2>
+          <p>我和Hello Kitty的合影与收藏分享</p>
+          <span class="card-tag"><i class="fa fa-camera"></i> 个人收藏</span>
+        </div>
+      </a>
+
+      <!-- 5. Hello Kitty's Friends -->
+      <a href="kitty-friends.html" class="site-card card-bow">
+        <img src="https://source.unsplash.com/random/400x300/?hellokitty,friends" alt="Hello Kitty's Friends" class="card-img">
+        <div class="card-info">
+          <h2>Hello Kitty's Friends</h2>
+          <p>结识Mimmy、My Melody等Kitty的好友</p>
+          <span class="card-tag"><i class="fa fa-users"></i> 好友合集</span>
+        </div>
+      </a>
+
+      <!-- 6. F1 ACADEMY x Hello Kitty 2025 -->
+      <a href="kitty-f1.html" class="site-card card-bow">
+        <img src="https://source.unsplash.com/random/400x300/?formula1,racing" alt="F1 ACADEMY x Hello Kitty 2025" class="card-img">
+        <div class="card-info">
+          <h2>F1 ACADEMY x Hello Kitty 2025</h2>
+          <p>感受赛车与萌系的跨界精彩合作</p>
+          <span class="card-tag"><i class="fa fa-car"></i> 跨界联名</span>
+        </div>
+      </a>
+
+      <!-- 7. Hello Kitty Parks Worldwide -->
+      <a href="kitty-parks.html" class="site-card card-bow">
+        <img src="https://source.unsplash.com/random/400x300/?theme,park" alt="Hello Kitty Parks Worldwide" class="card-img">
+        <div class="card-info">
+          <h2>Hello Kitty Parks Worldwide</h2>
+          <p>打卡全球各地的Hello Kitty主题公园</p>
+          <span class="card-tag"><i class="fa fa-map-marker"></i> 主题乐园</span>
+        </div>
+      </a>
+
+      <!-- 8. Hello Kitty 50th Anniversary Collaborations -->
+      <a href="kitty-50th.html" class="site-card card-bow">
+        <img src="https://source.unsplash.com/random/400x300/?hellokitty,50th,anniversary" alt="50th Anniversary Collaborations" class="card-img">
+        <div class="card-info">
+          <h2>50th Anniversary Collaborations</h2>
+          <p>回顾Hello Kitty 50周年的精彩联名系列</p>
+          <span class="card-tag"><i class="fa fa-gift"></i> 周年纪念</span>
+        </div>
+      </a>
+
+      <!-- 9. Kitty Shaped Delicacies -->
+      <a href="kitty-food.html" class="site-card card-bow">
+        <img src="https://github.com/Yoyo72099/harmonic-collection/blob/main/截屏2025-11-19%20下午7.27.55.png?raw=true" alt="Kitty Shaped Delicacies" class="card-img">
+        <div class="card-info">
+          <h2>Kitty Shaped Delicacies</h2>
+          <p>超萌的Hello Kitty造型美食合集</p>
+          <span class="card-tag"><i class="fa fa-cutlery"></i> 美食系列</span>
+        </div>
+      </a>
+    </div>
+  </main>
+
+  <!-- 页脚 -->
+  <footer>
+    <p>© Hello Kitty World | Created with ❤️ for Kitty Lovers</p>
+  </footer>
 </body>
 </html>
